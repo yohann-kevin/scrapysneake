@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: init
 
 # Controls when the action will run. 
 on:
@@ -44,5 +44,5 @@ jobs:
           echo test, and deploy your project.
         
       # run test
-      - name: Run a test
-        run: bundle exec ruby calculator_test.rb
+#       - name: Run a test
+#         run: bundle exec ruby calculator_test.rb
