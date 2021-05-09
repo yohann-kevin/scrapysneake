@@ -2,32 +2,32 @@ class Api::TrendController < ApplicationController
   def initialize
     @data = [
       {
-        # imgPath: require("@/assets/sneakers/adidas-ozweego-celox.webp"),
+        image_path: "http://localhost:3000/images/sneakers/adidas-ozweego-celox.png",
         model: "Adidas Ozweego Celox",
         price: "120,00 €",
         gender: "Mixte",
-        sellerName: "courir"
+        seller_name: "courir"
       },
       {
-        # imgPath: require("@/assets/sneakers/air-jordan-one.webp"),
+        image_path: "http://localhost:3000/images/sneakers/air-jordan-one.png",
         model: "Jordan Air One",
         price: "130,00 €",
         gender: "Homme",
-        sellerName: "courir"
+        seller_name: "courir"
       },
       {
-        # imgPath: require("@/assets/sneakers/new-balance-327.png"),
+        image_path: "http://localhost:3000/images/sneakers/new-balance-327.png",
         model: "New Balance 327",
         price: "90,00 €",
         gender: "Femme",
-        sellerName: "courir"
+        seller_name: "courir"
       },
       {
-        # imgPath: require("@/assets/sneakers/puma-mirage-tech.webp"),
+        image_path: "http://localhost:3000/images/sneakers/puma-mirage-tech.png",
         model: "Puma Mirage Tech",
         price: "100,00 €",
         gender: "Homme",
-        sellerName: "courir"
+        seller_name: "courir"
       }
     ]
   end
