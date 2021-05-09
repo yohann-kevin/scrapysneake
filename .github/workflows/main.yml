@@ -31,7 +31,7 @@ jobs:
         with:
           # Engine and version to use, see the syntax in the README. Reads from .ruby-version or .tool-versions if unset.
           ruby-version: 3.0.1 # optional, default is default
-          bundler-cache: true # optional, default is false
+          bundler-cache: false # optional, default is false
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
