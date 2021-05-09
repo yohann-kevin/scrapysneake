@@ -1,4 +1,4 @@
-# !/usr/bin/env ruby3.0.1
+#!/usr/bin/env ruby
 # frozen_string_literal: true
 
 #
@@ -72,6 +72,8 @@ m = Module.new do
     bundler_gem_version = Gem::Version.new(bundler_version)
 
     requirement = bundler_gem_version.approximate_recommendation
+
+    return requirement unless Gem::Version.new(Gem::VERSION) < Gem::Version.new("2.7.0")
 
     requirement += ".a" if bundler_gem_version.prerelease?
 
