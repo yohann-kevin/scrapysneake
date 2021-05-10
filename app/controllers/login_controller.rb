@@ -24,7 +24,7 @@ class LoginController < ApplicationController
     end
     send_response
   end
-  isUsers
+  
   def check_error(log)
     @isName = true if log[0] != @name
     @isPass = true if log[1] != @pass
