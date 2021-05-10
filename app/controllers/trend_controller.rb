@@ -1,4 +1,4 @@
-class Api::TrendController < ApplicationController
+class TrendController < ApplicationController
   def initialize
     @data = [
       {
@@ -34,5 +34,5 @@ class Api::TrendController < ApplicationController
 
   def send_data
     render json: @data
-  end
+  end  
 end

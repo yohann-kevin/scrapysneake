@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  get "/trend" => "api/trend#send_data"
+  get "/" => "index#home"
+
+  get "/trend" => "trend#send_data"
 end
