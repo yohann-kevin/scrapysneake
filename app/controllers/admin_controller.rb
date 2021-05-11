@@ -7,6 +7,23 @@ class AdminController < ApplicationController
     @adm_params = params[:adm]
     puts "controller"
     puts @adm_params
-    Admin.new(@adm_params).read_data
+    manage_request(@adm_params)
+    # Admin.new(@adm_params).read_data
+  end
+
+  def manage_request(request)
+    data = request.split("&")
+    params = ActionController::Parameters.new({
+      admin: {
+        name: request.split("&")[0],
+        password: request.split("&")[1]
+      }
+    })
+    
+    Admin.create(send_data(params))
+  end
+
+  def send_data(params)
+    params.require(:admin).permit(:name, :password)
   end
 end
