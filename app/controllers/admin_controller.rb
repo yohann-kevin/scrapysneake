@@ -26,4 +26,11 @@ class AdminController < ApplicationController
   def send_data(params)
     params.require(:admin).permit(:name, :password)
   end
+
+  def read_data
+    data = {}
+    data = Admin.all
+    puts "plop"
+    puts data[0].password
+  end
 end
