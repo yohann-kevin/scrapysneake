@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :administrators
+  
   get "/" => "index#home"
 
   get "/trend" => "trend#send_data"
