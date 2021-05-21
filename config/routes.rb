@@ -12,4 +12,6 @@ Rails.application.routes.draw do
 
   get "admin/add/:adm" => "admin#add_admin"
   get "admin/get" => "admin#read_data"
+
+  get "partner/get" => "partner#send_partner"
 end
