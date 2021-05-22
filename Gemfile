@@ -18,6 +18,8 @@ gem 'puma', '~> 5.0'
 
 # for api
 gem 'rack-cors'
+# nokogiri
+gem "nokogiri"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

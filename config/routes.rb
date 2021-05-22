@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   get "admin/get" => "admin#read_data"
 
   get "partner/get" => "partner#send_partner"
+
+  get "scrap" => "scraper#scrap"
 end
