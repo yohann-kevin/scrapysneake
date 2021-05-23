@@ -1,0 +1,2 @@
+class Sneaker < ApplicationRecord
+end
