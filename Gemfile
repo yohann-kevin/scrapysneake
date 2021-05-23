@@ -20,6 +20,8 @@ gem 'puma', '~> 5.0'
 gem 'rack-cors'
 # nokogiri
 gem "nokogiri"
+# spec
+gem 'rspec-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
