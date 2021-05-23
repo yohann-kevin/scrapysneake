@@ -5,6 +5,9 @@ class ScraperOfficialshopController < ApplicationController
   def self.scrap_officialshop
     @sneaker__officialshop = []
     scrap_man_low_sneaker
+    # scrap_women_low_sneaker
+    # scrap_man_high_sneaker
+    # scrap_women_high_sneaker
   end
 
   def self.scrap_man_low_sneaker
@@ -14,15 +17,30 @@ class ScraperOfficialshopController < ApplicationController
     find_sneaker(man_page_html, "man")
   end
 
+  def self.scrap_women_low_sneaker
+    women_page_url = "https://www.laboutiqueofficielle.com/baskets-chaussures-2/baskets-basses-91.html?sexe=Femme"
+    women_page = URI.open(women_page_url)
+    women_page_html = Nokogiri::HTML(women_page)
+    find_sneaker(women_page_html, "women")
+  end
+
+  def self.scrap_man_high_sneaker
+    man_page_url = "https://www.laboutiqueofficielle.com/baskets-chaussures-2/baskets-montantes-92.html?sexe=Homme"
+    man_page = URI.open(man_page_url)
+    man_page_html = Nokogiri::HTML(man_page)
+    find_sneaker(man_page_html, "man")
+  end
+
+  def self.scrap_women_high_sneaker
+    women_page_url = "https://www.laboutiqueofficielle.com/baskets-chaussures-2/baskets-montantes-92.html?sexe=Femme"
+    women_page = URI.open(women_page_url)
+    women_page_html = Nokogiri::HTML(women_page)
+    find_sneaker(women_page_html, "women")
+  end
+
   def self.find_sneaker(page, gender)
     initial_link = "https://www.laboutiqueofficielle.com"
-    # section = page.css(".c-product-thumbnail")[0]
     page_size = page.css(".c-product-thumbnail").length
-    # model = "#{mark} #{model}"
-    # price = section.css(".c-price").text
-    # link = page.css(".c-product-thumbnail")[0]["href"]
-    # link = "#{initial_link}#{link}"
-    # image_path = section.css(".c-product-thumbnail__img-wrapper").css("img")[0]["src"]
 
     0.upto(page_size - 1) {
       |el|
