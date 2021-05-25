@@ -15,7 +15,9 @@ class SneakersController < ApplicationController
 
   # POST /sneakers
   def create
-    @sneaker = Sneaker.new(sneaker_params)
+    puts "------------"
+    puts sneaker_params
+    @sneaker = Sneaker.add_new_sneaker(sneaker_params)
 
     if @sneaker.save
       render json: @sneaker, status: :created, location: @sneaker
@@ -46,6 +48,6 @@ class SneakersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def sneaker_params
-      params.require(:sneaker).permit(:model, :price, :link, :gender, :seller, :image_path, :wanted)
+      params.permit(:model, :price, :link, :gender, :seller, :image_path)
     end
 end
