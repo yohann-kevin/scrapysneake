@@ -10,14 +10,14 @@ class ScraperChausportController < ApplicationController
 
   def self.scrap_man_sneaker
     man_page_url = "https://www.chausport.com/l/chaussures/homme.html"
-    man_page = URI.open(man_page_url)
+    man_page = URI.parse(man_page_url).open
     man_page_html = Nokogiri::HTML(man_page)
     find_sneaker(man_page_html, "man")
   end
 
   def self.scrap_women_sneaker
     women_page_url = "https://www.chausport.com/l/chaussures/femme.html"
-    women_page = URI.open(women_page_url)
+    women_page = URI.parse(women_page_url).open
     women_page_html = Nokogiri::HTML(women_page)
     find_sneaker(women_page_html, "women")
   end

@@ -10,14 +10,14 @@ class ScraperFootlockerController < ApplicationController
 
   def self.scrap_man_sneakers
     man_page_url = "https://www.footlocker.fr/fr/category/homme/chaussures.html"
-    man_page = URI.open(man_page_url)
+    man_page = URI.parse(man_page_url).open
     man_page_html = Nokogiri::HTML(man_page)
     find_sneakers(man_page_html, "man")
   end
 
   def self.scrap_women_sneakers
     women_page_url = "https://www.footlocker.fr/fr/category/femme/chaussures.html"
-    women_page = URI.open(women_page_url)
+    women_page = URI.parse(women_page_url).open
     women_page_html = Nokogiri::HTML(women_page)
     find_sneakers(women_page_html, "women")
   end
