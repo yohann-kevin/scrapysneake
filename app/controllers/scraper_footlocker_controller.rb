@@ -48,7 +48,7 @@ class ScraperFootlockerController < ApplicationController
   # id : 314520713604
   # ?wid=236&hei=236&fmt=png-alpha
   def self.find_image(start_uri, link)
-    product_page = URI.open("#{start_uri}#{link}")
+    product_page = URI.parse("#{start_uri}#{link}").open
     product_page = Nokogiri::HTML(product_page)
     
     begin

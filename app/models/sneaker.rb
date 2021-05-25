@@ -7,14 +7,14 @@ class Sneaker < ApplicationRecord
   validates :image_path, presence: true
 
   def self.add_new_sneaker(sneaker_params)
-    isInDb = false
+    is_in_db = false
     sneaker = Sneaker.new(sneaker_params)
     old_sneaker = Sneaker.where(model: sneaker_params[:model])
     if old_sneaker != nil
       old_sneaker.each do |el|
-        isInDb = true if el[:seller] == sneaker_params[:seller]
+        is_in_db = true if el[:seller] == sneaker_params[:seller]
       end
     end
-    return isInDb ? false : sneaker
+    return is_in_db ? false : sneaker
   end
 end
