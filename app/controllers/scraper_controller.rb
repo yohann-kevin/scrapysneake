@@ -1,17 +1,46 @@
 class ScraperController < ApplicationController
+  # http://localhost:3000/scrap/footLocker&chausport&officialShop
+
   def scrap
     # ScraperCourirController.scrap_courir
-    foot_locker_sneaker = ScraperFootlockerController.scrap_foot_locker
-    chausport_sneaker = ScraperChausportController.scrap_chausport
-    official_shop_sneaker = ScraperOfficialshopController.scrap_officialshop
-
+    webapps = analyze_params(params[:webapp])
     puts " "
-    # puts foot_locker_sneaker.length
-    render json: {"data" => sneaker = {
-        "foot_locker" => foot_locker_sneaker,
-        "chausport" => chausport_sneaker,
-        "official_shop" => official_shop_sneaker
+    render json: @data = find_sneakers(webapps)
+  end
+
+  def find_sneakers(webapps)
+    {
+      "response" => true,
+      "data" => sneaker = {
+        "foot_locker" => check_foot_locker(webapps),
+        "chausport" => check_chausport(webapps),
+        "official_shop" => check_official_shop(webapps)
       }
     }
+  end
+
+  def analyze_params(params)
+    params.split("&")
+  end
+
+  def check_foot_locker(webapps)
+    webapps.each do |el|
+      return ScraperFootlockerController.scrap_foot_locker if el == "footLocker"
+    end
+    nil
+  end
+
+  def check_chausport(webapps)
+    webapps.each do |el|
+      return ScraperChausportController.scrap_chausport if el == "chausport"
+    end
+    nil
+  end
+
+  def check_official_shop(webapps)
+    webapps.each do |el|
+      return ScraperOfficialshopController.scrap_officialshop if el == "officialShop"
+    end
+    nil
   end
 end

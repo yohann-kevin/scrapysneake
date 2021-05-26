@@ -19,5 +19,5 @@ Rails.application.routes.draw do
 
   get "partner/get" => "partner#send_partner"
 
-  get "scrap" => "scraper#scrap"
+  get "scrap/:webapp" => "scraper#scrap"
 end
