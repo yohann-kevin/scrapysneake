@@ -40,6 +40,12 @@ class SneakersController < ApplicationController
     @sneaker.destroy
   end
 
+  def find_sneakers
+    @sneakers = Sneaker.find_sneaker_with_model(params[:model])
+
+    render json: @sneakers
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sneaker

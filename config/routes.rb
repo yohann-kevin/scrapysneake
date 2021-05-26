@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  resources :sneakers
   resources :administrators
+
+  resources :sneakers
+
+  get "/sneakers/find/:model" => "sneakers#find_sneakers"
   
   get "/" => "index#home"
 
