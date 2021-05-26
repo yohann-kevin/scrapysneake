@@ -1,0 +1,20 @@
+version: 2.1
+orbs:
+  ruby: circleci/ruby@0.1.2 
+
+jobs:
+  build:
+    docker:
+      - image: cimg/ruby:3.0.1
+    executor: ruby/default
+    steps:
+      - checkout
+      - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
+      - run: sudo apt-get update
+      - run: sudo apt-get install libsqlite3-dev
+      - run:
+          name: installing bundler
+          command: bundle install
+      - run:
+          name: Run RSpec
+          command: bundle exec rspec spec
