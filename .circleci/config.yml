@@ -9,9 +9,9 @@ jobs:
     executor: ruby/default
     steps:
       - checkout
-      - run:
-          name: install sqlite 3
-          command: gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'
+      - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
+      - run: sudo apt-get update
+      - run: sudo apt-get install libsqlite3-dev
       - run:
           name: installing bundler
           command: bundle install
