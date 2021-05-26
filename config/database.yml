@@ -23,4 +23,6 @@ test:
 production:
   adapter: mysql2
   # database: db/production.sqlite3
-  database: <%= ENV['DATABASE_URL'] %>
+  database: ENV['DATABASE_URL']
+  username: ENV['DATABASE_USERNAME']
+  password: ENV['DATABASE_PASSWORDs']
