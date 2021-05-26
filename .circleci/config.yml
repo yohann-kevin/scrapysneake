@@ -15,11 +15,7 @@ jobs:
       - run:
           name: installing bundler
           command: bundle config set --local path 'vendor/bundle'
-      - run:
-          name: Which bundler?
-          environment:
-            BUNDLE_PATH: vendor/bundle
-          command: bundle -v
+      
       - ruby/bundle-install
       - run:
           name: Run RSpec
