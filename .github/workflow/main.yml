@@ -44,5 +44,5 @@ jobs:
           echo test, and deploy your project.
         
       # run test
-#       - name: Run a test
-#         run: bundle exec ruby calculator_test.rb
+      - name: Run a test
+        run: bundle exec rspec
