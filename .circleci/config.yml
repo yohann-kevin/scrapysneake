@@ -9,9 +9,6 @@ jobs:
     executor: ruby/default
     steps:
       - checkout
-      - run: 
-          name: install sqlite 3
-          command: sudo apt-get install sqlite3
       - run:
           name: installing bundler
           command: bundle install
