@@ -4,11 +4,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '~> 3.0.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
+gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 # Use sqlite3 as the database for Active Record
 # 
 # Use Puma as the app server
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 5.3', '>= 5.3.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
@@ -19,9 +19,9 @@ gem 'puma', '~> 5.0'
 # for api
 gem 'rack-cors'
 # nokogiri
-gem "nokogiri"
+gem "nokogiri", ">= 1.11.4"
 # spec
-gem 'rspec-rails'
+gem 'rspec-rails', '>= 5.0.1'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
