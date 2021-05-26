@@ -11,7 +11,7 @@ jobs:
       - checkout
       - run: 
           name: install sqlite 3
-          command: apt-get install libsqlite3-dev
+          command: sudo apt-get install libsqlite3-dev
       - run:
           name: installing bundler
           command: bundle install
