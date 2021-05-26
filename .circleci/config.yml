@@ -10,6 +10,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: install sqlite 3
+          command: gem install sqlite3 -v '1.4.2' --source 'https://rubygems.org/'
+      - run:
           name: installing bundler
           command: bundle install
       - run:
