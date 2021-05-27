@@ -12,7 +12,7 @@ class AdminController < ApplicationController
   end
 
   def manage_request(request)
-    data = request.split("&")
+    # data = request.split("&")
     params = ActionController::Parameters.new({
       admin: {
         name: request.split("&")[0],
@@ -28,9 +28,9 @@ class AdminController < ApplicationController
   end
 
   def read_data
-    data = {}
-    data = Admin.all
+    admin = {}
+    admin = Admin.all
     puts "plop"
-    puts data[0].password
+    puts admin[0].password
   end
 end
