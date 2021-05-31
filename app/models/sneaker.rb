@@ -21,4 +21,17 @@ class Sneaker < ApplicationRecord
   def self.find_sneaker_with_model(model)
     sneaker = Sneaker.where(model: model).order(price: :asc)
   end
+
+  def self.count_sneaker(day_ago)
+    Sneaker.where("created_at < ?", day_ago.days.ago).count
+  end
+
+  def self.count_sneaker_gender(day_ago, gender)
+    # Sneaker.where(gender: gender).count
+    Sneaker.where("gender = ? AND created_at < ?", gender, day_ago.days.ago).count
+  end
+
+  def self.count_sneaker_with_date(day_ago, gender)
+    Sneaker.where("created_at < ?", day_ago.days.ago, gender: gender).count
+  end
 end
