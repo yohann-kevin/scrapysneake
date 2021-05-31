@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :sneakers
 
   get "/sneakers/find/:model" => "sneakers#find_sneakers"
+  get "/sneakers/count/all" => "sneakers#sneaker_count"
   
   get "/" => "index#home"
 
