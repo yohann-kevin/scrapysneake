@@ -82,7 +82,7 @@ if everything is working well you can go to [http://localhost:3000](http://local
 
 ```json
 {
-  "response": "error routes is not works"
+  "response": "Welcome to scrappysneake !"
 }
 ```
 

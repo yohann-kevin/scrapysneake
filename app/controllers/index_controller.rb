@@ -1,5 +1,5 @@
 class IndexController < ApplicationController
   def home
-    render json: { "response" => "error routes is not works" }
+    render json: { "response" => "Welcome to scrappysneake !" }
   end
 end
