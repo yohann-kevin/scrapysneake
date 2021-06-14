@@ -27,26 +27,10 @@ class SneakersController < ApplicationController
   end
 
   def sneaker_count
-    # counter = Sneaker.count_sneaker
-    # counter_man = Sneaker.count_sneaker_gender("man")
-    # counter_women = Sneaker.count_sneaker_gender("women")
-    # render json: {
-    #   "counter_sneaker" => counter,
-    #   "counter_sneaker_man" => counter_man,
-    #   "counter_sneaker_women" => counter_women
-    # }
-
     counter = {}
 
     0.upto(7) {
       |el|
-      # counter << {
-      #   "days#{el}" => {
-      #     "counter_sneaker" => Sneaker.count_sneaker(el),
-      #     "counter_sneaker_man" => Sneaker.count_sneaker_gender(el, "man"),
-      #     "counter_sneaker_women" => Sneaker.count_sneaker_gender(el, "women")
-      #   }
-      # }
       counter["days#{el}"] = {
         "counter_sneaker" => Sneaker.count_sneaker(el),
         "counter_sneaker_man" => Sneaker.count_sneaker_gender(el, "man"),
