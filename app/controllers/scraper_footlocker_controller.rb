@@ -40,7 +40,7 @@ class ScraperFootlockerController < ApplicationController
         "image_path" => find_image("https://www.footlocker.fr/", product_link)
       }
     }
-    
+    Sneaker.add_new_sneaker(@sneaker_foot_locker)
     return @sneaker_foot_locker
   end
 

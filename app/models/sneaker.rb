@@ -18,6 +18,12 @@ class Sneaker < ApplicationRecord
     return is_in_db ? false : sneaker
   end
 
+  def add_foot_locker_sneaker(sneaker)
+    puts sneaker
+    sneaker = Sneaker.new(sneaker)
+    puts sneaker
+  end
+
   def self.find_sneaker_with_model(model)
     sneaker = Sneaker.where(model: model).order(price: :asc)
   end
