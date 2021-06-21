@@ -40,8 +40,8 @@ class ScraperFootlockerController < ApplicationController
         "image_path" => find_image("https://www.footlocker.fr/", product_link)
       }
     }
-    Sneaker.add_new_sneaker(@sneaker_foot_locker)
-    return @sneaker_foot_locker
+    save_sneaker_foot_locker
+    # return @sneaker_foot_locker
   end
 
   # //images.footlocker.com/is/image/FLEU/
@@ -61,5 +61,13 @@ class ScraperFootlockerController < ApplicationController
       puts e
       uri = "error"
     end
+  end
+
+  def self.save_sneaker_foot_locker
+    @sneaker_foot_locker.each do |el|
+      sneaker = Sneaker.add_new_sneaker(el)
+      sneaker.save if sneaker != nil
+    end
+    return @sneaker_foot_locker
   end
 end

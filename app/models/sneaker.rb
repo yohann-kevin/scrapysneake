@@ -1,3 +1,5 @@
+require "pry"
+
 class Sneaker < ApplicationRecord
   validates :model, presence: true
   validates :price, presence: true
@@ -8,14 +10,17 @@ class Sneaker < ApplicationRecord
 
   def self.add_new_sneaker(sneaker_params)
     is_in_db = false
-    sneaker = Sneaker.new(sneaker_params)
-    old_sneaker = Sneaker.where(model: sneaker_params[:model])
-    if old_sneaker != nil
+    old_sneaker = Sneaker.where(model: sneaker_params["model"])
+    if !old_sneaker.length.zero?
       old_sneaker.each do |el|
-        is_in_db = true if el[:seller] == sneaker_params[:seller]
+        is_in_db = true if el["seller"] != sneaker_params["seller"]
       end
+      sneaker = Sneaker.new(sneaker_params) if is_in_db
+    else
+      is_in_db = true
+      sneaker = Sneaker.new(sneaker_params)
     end
-    return is_in_db ? false : sneaker
+    return sneaker if is_in_db
   end
 
   def add_foot_locker_sneaker(sneaker)

@@ -22,6 +22,8 @@ gem 'rack-cors'
 gem "nokogiri"
 # spec
 gem 'rspec-rails'
+# pry debugger
+gem 'pry'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
