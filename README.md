@@ -94,7 +94,7 @@ To contribute to the scrappysneake API project please follow the instructions in
 
 If the back and ruby is not your strong point you can always contribute to the improvement of the front part, the code of which is also available on github. [STB front](https://github.com/yohann-kevin/STB).
 
-Found a bug? Report it on [GitHub Issues](https://github.com/yohann-kevin/scrapysneake/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) and include a code sample. Please state which version of Phaser you are using! This is vitally important.
+Found a bug? Report it on [GitHub Issues](https://github.com/yohann-kevin/scrapysneake/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) and include a code sample ! This is vitally important.
 
 ## Contributor
 
