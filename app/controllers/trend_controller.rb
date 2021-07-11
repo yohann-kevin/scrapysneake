@@ -1,29 +1,31 @@
 class TrendController < ApplicationController
+
   def initialize
+    @img_link = ENV.fetch("IMG_API_LINK")
     @data = [
       {
-        image_path: "https://scrapysneake.herokuapp.com/images/sneakers/adidas-ozweego-celox.png",
+        image_path: "#{@img_link}sneakers/adidas-ozweego-celox.png",
         model: "Adidas Ozweego Celox",
         price: "120,00 €",
         gender: "Mixte",
         seller_name: "courir"
       },
       {
-        image_path: "https://scrapysneake.herokuapp.com/images/sneakers/air-jordan-one.png",
+        image_path: "#{@img_link}sneakers/air-jordan-one.png",
         model: "Jordan Air One",
         price: "130,00 €",
         gender: "Homme",
         seller_name: "courir"
       },
       {
-        image_path: "https://scrapysneake.herokuapp.com/images/sneakers/new-balance-327.png",
+        image_path: "#{@img_link}sneakers/new-balance-327.png",
         model: "New Balance 327",
         price: "90,00 €",
         gender: "Femme",
         seller_name: "courir"
       },
       {
-        image_path: "https://scrapysneake.herokuapp.com/images/sneakers/puma-mirage-tech.png",
+        image_path: "#{@img_link}sneakers/puma-mirage-tech.png",
         model: "Puma Mirage Tech",
         price: "100,00 €",
         gender: "Homme",

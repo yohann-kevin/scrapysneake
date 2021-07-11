@@ -1,29 +1,30 @@
 class PartnerController < ApplicationController
   def initialize
+    @img_link = ENV.fetch("IMG_API_LINK")
     @data = [
       {
         "name": "La boutique officiel",
-        "image_path": "https://scrapysneake.herokuapp.com/images/partners/boutiqueofficiel.png"
+        "image_path": "#{@img_link}partners/boutiqueofficiel.png"
       },
       {
         "name": "Adidas",
-        "image_path": "https://scrapysneake.herokuapp.com/images/partners/adidas.png"
+        "image_path": "#{@img_link}partners/adidas.png"
       },
       {
         "name": "Courir",
-        "image_path": "https://scrapysneake.herokuapp.com/images/partners/courir.png"
+        "image_path": "#{@img_link}partners/courir.png"
       },
       {
         "name": "Fila",
-        "image_path": "https://scrapysneake.herokuapp.com/images/partners/fila.png"
+        "image_path": "#{@img_link}partners/fila.png"
       },
       {
         "name": "Nike",
-        "image_path": "https://scrapysneake.herokuapp.com/images/partners/nike.png"
+        "image_path": "#{@img_link}partners/nike.png"
       },
       {
         "name": "Reebok",
-        "image_path": "https://scrapysneake.herokuapp.com/images/partners/reebok.png"
+        "image_path": "#{@img_link}partners/reebok.png"
       }
     ]
   end

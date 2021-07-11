@@ -1,13 +1,14 @@
 class AdvertController < ApplicationController
   def initialize
-    @image_path = [
-      "https://scrapysneake.herokuapp.com/images/carousel/adidas-share.jpg",
-      "https://scrapysneake.herokuapp.com/images/carousel/newbalance-327.jpg",
-      "https://scrapysneake.herokuapp.com/images/carousel/nike-loops.jpg"
+    @img_link = ENV.fetch("IMG_API_LINK")
+    @carousel_img = [
+      "#{@img_link}carousel/adidas-share.jpg",
+      "#{@img_link}carousel/newbalance-327.jpg",
+      "#{@img_link}carousel/nike-loops.jpg"
     ]
   end
 
   def send_image_carousel
-    render json: { "image_path" => @image_path }
+    render json: { "image_path" => @carousel_img }
   end
 end
