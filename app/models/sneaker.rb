@@ -30,7 +30,7 @@ class Sneaker < ApplicationRecord
   end
 
   def self.find_sneaker_with_model(model)
-    sneaker = Sneaker.where(model: model).order(price: :asc)
+    sneaker = Sneaker.where("model LIKE '%#{model}%'").order(price: :asc)
   end
 
   def self.count_sneaker(day_ago)
