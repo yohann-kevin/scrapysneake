@@ -3,11 +3,11 @@ require "open-uri"
 
 class ScraperOfficialshopController < ApplicationController
   def self.scrap_officialshop
-    @sneaker__officialshop = []
+    @sneaker__official_shop = []
     scrap_man_low_sneaker
-    # scrap_women_low_sneaker
-    # scrap_man_high_sneaker
-    # scrap_women_high_sneaker
+    scrap_women_low_sneaker
+    scrap_man_high_sneaker
+    scrap_women_high_sneaker
   end
 
   def self.scrap_man_low_sneaker
@@ -48,7 +48,7 @@ class ScraperOfficialshopController < ApplicationController
       section = page.css(".c-product-thumbnail")[el]
       mark = section.css(".c-product-thumbnail__title").text
       model = section.css(".c-product-thumbnail__desc").text
-      @sneaker__officialshop << {
+      @sneaker__official_shop << {
         "model" => build_model(mark, model),
         "price" => section.css(".c-price").text,
         "link" => "#{initial_link}#{page.css(".c-product-thumbnail")[el]["href"]}",
@@ -57,8 +57,7 @@ class ScraperOfficialshopController < ApplicationController
         "image_path" => section.css(".c-product-thumbnail__img-wrapper").css("img")[0]["src"],
       }
     }
-    
-    return @sneaker__officialshop
+    save_sneaker_official_shop
   end
 
   def self.build_model(mark, model)
@@ -70,5 +69,13 @@ class ScraperOfficialshopController < ApplicationController
       final_model += "#{arr[el]} "
     }
     return final_model.tr("0-9","")
+  end
+
+  def self.save_sneaker_official_shop
+    @sneaker__official_shop.each do |el|
+      sneaker = Sneaker.add_new_sneaker(el)
+      sneaker.save if sneaker != nil
+    end
+    return @sneaker__official_shop
   end
 end
