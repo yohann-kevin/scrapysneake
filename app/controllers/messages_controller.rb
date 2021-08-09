@@ -46,7 +46,6 @@ class MessagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def message_params
-      # params.require(:administrator).permit(:name, :encrypted_password)
       params.permit(:mail, :object, :content, :is_open)
     end
 end
