@@ -12,17 +12,17 @@ class ScraperChausportController < ApplicationController
     man_page_url = "https://www.chausport.com/l/chaussures/homme.html"
     man_page = URI.parse(man_page_url).open
     man_page_html = Nokogiri::HTML(man_page)
-    find_sneaker(man_page_html, "man")
+    find_sneakers(man_page_html, "man")
   end
 
   def self.scrap_women_sneaker
     women_page_url = "https://www.chausport.com/l/chaussures/femme.html"
     women_page = URI.parse(women_page_url).open
     women_page_html = Nokogiri::HTML(women_page)
-    find_sneaker(women_page_html, "women")
+    find_sneakers(women_page_html, "women")
   end
 
-  def self.find_sneaker(page, gender)
+  def self.find_sneakers(page, gender)
     page_size = page.css(".product-item__container").length
 
     0.upto(page_size - 1) {
@@ -39,7 +39,14 @@ class ScraperChausportController < ApplicationController
         "image_path" => section.css(".product-item__image")[0]["data-src"]
       }
     }
+    save_sneaker_chausport
+  end
 
+  def self.save_sneaker_chausport
+    @sneaker_chausport.each do |el|
+      sneaker = Sneaker.add_new_sneaker(el)
+      sneaker.save if sneaker != nil
+    end
     return @sneaker_chausport
   end
 end
