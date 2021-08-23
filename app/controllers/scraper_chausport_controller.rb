@@ -9,17 +9,25 @@ class ScraperChausportController < ApplicationController
   end
 
   def self.scrap_man_sneaker
-    man_page_url = "https://www.chausport.com/l/chaussures/homme.html"
-    man_page = URI.parse(man_page_url).open
-    man_page_html = Nokogiri::HTML(man_page)
-    find_sneakers(man_page_html, "man")
+    1.upto(20) {
+      |i|
+      man_page_url = "https://www.chausport.com/l/chaussures/homme.html?p=" + i.to_s
+      puts man_page_url
+      man_page = URI.parse(man_page_url).open
+      man_page_html = Nokogiri::HTML(man_page)
+      find_sneakers(man_page_html, "man")
+    }
   end
 
   def self.scrap_women_sneaker
-    women_page_url = "https://www.chausport.com/l/chaussures/femme.html"
-    women_page = URI.parse(women_page_url).open
-    women_page_html = Nokogiri::HTML(women_page)
-    find_sneakers(women_page_html, "women")
+    1.upto(10) {
+      |i|
+      women_page_url = "https://www.chausport.com/l/chaussures/femme.html?p=" + i.to_s
+      puts women_page_url
+      women_page = URI.parse(women_page_url).open
+      women_page_html = Nokogiri::HTML(women_page)
+      find_sneakers(women_page_html, "man")
+    }
   end
 
   def self.find_sneakers(page, gender)
