@@ -55,6 +55,15 @@ class SneakersController < ApplicationController
     @sneaker.destroy
   end
 
+  def delete_sneakers_by_seller
+    # puts params[:seller]
+    if Rails.env == "development"
+      Sneaker.remove_sneakers_by_seller(params[:seller])
+    else
+      puts "is in prod ! can't delete sneakers !"
+    end
+  end
+
   def find_sneakers
     @sneakers = Sneaker.find_sneaker_with_model(params[:model])
 

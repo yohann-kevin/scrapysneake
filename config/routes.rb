@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :administrators
 
   resources :sneakers
+  post "/sneakers/delete/:seller" => "sneakers#delete_sneakers_by_seller"
 
   resources :messages
 
