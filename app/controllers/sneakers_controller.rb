@@ -13,6 +13,18 @@ class SneakersController < ApplicationController
     render json: @sneaker
   end
 
+  def find_sneakers
+    @sneakers = Sneaker.find_sneaker_with_model(params[:model])
+
+    render json: @sneakers
+  end
+
+  def find_sneakers_most_wanted
+    @sneakers = Sneaker.find_most_wanted_sneakers
+
+    render json: @sneakers
+  end
+
   # POST /sneakers
   def create
     puts "------------"
@@ -41,6 +53,19 @@ class SneakersController < ApplicationController
     render json: counter
   end
 
+  def count_most_seller
+    seller = Sneaker.find_all_seller
+
+    puts seller[0]
+    most_seller = {
+      "#{seller[0]}" => Sneaker.find_most_seller(seller[0]),
+      "#{seller[1]}" => Sneaker.find_most_seller(seller[1]),
+      "#{seller[2]}" => Sneaker.find_most_seller(seller[2]),
+    }
+
+    render json: most_seller
+  end
+
   # PATCH/PUT /sneakers/1
   def update
     if @sneaker.update(sneaker_params)
@@ -64,10 +89,12 @@ class SneakersController < ApplicationController
     end
   end
 
-  def find_sneakers
-    @sneakers = Sneaker.find_sneaker_with_model(params[:model])
-
-    render json: @sneakers
+  def reset_all_sneakers_data
+    if Rails.env == "development"
+      Sneaker.destroy_all
+    else
+      puts "is in prod ! can't delete sneakers"
+    end
   end
 
   private

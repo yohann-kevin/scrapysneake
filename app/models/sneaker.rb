@@ -24,13 +24,24 @@ class Sneaker < ApplicationRecord
   end
 
   def add_foot_locker_sneaker(sneaker)
-    puts sneaker
-    sneaker = Sneaker.new(sneaker)
-    puts sneaker
+    Sneaker.new(sneaker)
   end
 
   def self.find_sneaker_with_model(model)
     sneaker = Sneaker.where("model LIKE '%#{model}%'").order(price: :asc)
+    wanted_update(sneaker)
+    return sneaker
+  end
+
+  def self.find_most_wanted_sneakers
+    Sneaker.order(wanted: :desc).limit(4)
+  end
+
+  def self.wanted_update(sneaker)
+    sneaker.each do |el|
+      el["wanted"] += 1
+      el.save
+    end
   end
 
   def self.count_sneaker(day_ago)
@@ -38,7 +49,6 @@ class Sneaker < ApplicationRecord
   end
 
   def self.count_sneaker_gender(day_ago, gender)
-    # Sneaker.where(gender: gender).count
     Sneaker.where("gender = ? AND created_at < ?", gender, day_ago.days.ago).count
   end
 
@@ -48,5 +58,23 @@ class Sneaker < ApplicationRecord
 
   def self.remove_sneakers_by_seller(seller)
     Sneaker.where(seller: seller).destroy_all
+  end
+
+  def self.find_all_seller
+    sneakers = Sneaker.all
+    all_seller = []
+    sneakers.each do |el|
+      all_seller.push(el["seller"]) if !all_seller.include?(el["seller"])
+    end
+    return all_seller
+  end
+
+  def self.find_most_seller(seller)
+    counter = 0
+    sneakers = Sneaker.where(seller: seller)
+    sneakers.each do |el|
+      counter += el["wanted"]
+    end
+    return counter
   end
 end
