@@ -53,6 +53,19 @@ class SneakersController < ApplicationController
     render json: counter
   end
 
+  def count_most_seller
+    seller = Sneaker.find_all_seller
+
+    puts seller[0]
+    most_seller = {
+      "#{seller[0]}" => Sneaker.find_most_seller(seller[0]),
+      "#{seller[1]}" => Sneaker.find_most_seller(seller[1]),
+      "#{seller[2]}" => Sneaker.find_most_seller(seller[2]),
+    }
+
+    render json: most_seller
+  end
+
   # PATCH/PUT /sneakers/1
   def update
     if @sneaker.update(sneaker_params)

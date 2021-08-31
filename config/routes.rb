@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :sneakers
 
   get "/sneakers/find/most_wanted" => "sneakers#find_sneakers_most_wanted"
+  get "/sneakers/find/most_seller" => "sneakers#count_most_seller"
 
   post "/sneakers/delete/:seller" => "sneakers#delete_sneakers_by_seller"
   post "/sneakers/delete/all" => "sneakers#reset_all_sneakers_data"

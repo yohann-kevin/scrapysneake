@@ -59,4 +59,22 @@ class Sneaker < ApplicationRecord
   def self.remove_sneakers_by_seller(seller)
     Sneaker.where(seller: seller).destroy_all
   end
+
+  def self.find_all_seller
+    sneakers = Sneaker.all
+    all_seller = []
+    sneakers.each do |el|
+      all_seller.push(el["seller"]) if !all_seller.include?(el["seller"])
+    end
+    return all_seller
+  end
+
+  def self.find_most_seller(seller)
+    counter = 0
+    sneakers = Sneaker.where(seller: seller)
+    sneakers.each do |el|
+      counter += el["wanted"]
+    end
+    return counter
+  end
 end
