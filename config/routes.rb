@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :sneakers
   post "/sneakers/delete/:seller" => "sneakers#delete_sneakers_by_seller"
-  post "/sneakers/delete/all" => "sneakers#delete_sneakers_by_seller"
+  post "/sneakers/delete/all" => "sneakers#reset_all_sneakers_data"
 
   resources :messages
 
