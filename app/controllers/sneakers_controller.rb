@@ -19,6 +19,12 @@ class SneakersController < ApplicationController
     render json: @sneakers
   end
 
+  def find_sneakers_most_wanted
+    @sneakers = Sneaker.find_most_wanted_sneakers
+
+    render json: @sneakers
+  end
+
   # POST /sneakers
   def create
     puts "------------"
