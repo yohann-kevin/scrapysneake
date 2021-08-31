@@ -13,6 +13,12 @@ class SneakersController < ApplicationController
     render json: @sneaker
   end
 
+  def find_sneakers
+    @sneakers = Sneaker.find_sneaker_with_model(params[:model])
+
+    render json: @sneakers
+  end
+
   # POST /sneakers
   def create
     puts "------------"
@@ -70,12 +76,6 @@ class SneakersController < ApplicationController
     else
       puts "is in prod ! can't delete sneakers"
     end
-  end
-
-  def find_sneakers
-    @sneakers = Sneaker.find_sneaker_with_model(params[:model])
-
-    render json: @sneakers
   end
 
   private

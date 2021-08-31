@@ -31,6 +31,15 @@ class Sneaker < ApplicationRecord
 
   def self.find_sneaker_with_model(model)
     sneaker = Sneaker.where("model LIKE '%#{model}%'").order(price: :asc)
+    wanted_update(sneaker)
+    return sneaker
+  end
+
+  def self.wanted_update(sneaker)
+    sneaker.each do |el|
+      el["wanted"] += 1
+      el.save
+    end
   end
 
   def self.count_sneaker(day_ago)
