@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :sneakers
 
+  resources :sites
+
   get "/sneakers/find/most_wanted" => "sneakers#find_sneakers_most_wanted"
   get "/sneakers/find/most_seller" => "sneakers#count_most_seller"
 

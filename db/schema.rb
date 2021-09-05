@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_05_142316) do
+ActiveRecord::Schema.define(version: 2021_09_05_150510) do
 
   create_table "administrators", force: :cascade do |t|
     t.string "name"
@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(version: 2021_09_05_142316) do
     t.string "object"
     t.string "content"
     t.boolean "is_open", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "sites", id: false, force: :cascade do |t|
+    t.string "uuid", limit: 36
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
