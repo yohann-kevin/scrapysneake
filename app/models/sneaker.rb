@@ -9,6 +9,7 @@ class Sneaker < ApplicationRecord
   validates :image_path, presence: true
 
   def self.add_new_sneaker(sneaker_params)
+    sneaker_params[:id] = SecureRandom.uuid
     is_in_db = false
     old_sneaker = Sneaker.where(model: sneaker_params["model"])
     if !old_sneaker.length.zero?

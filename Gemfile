@@ -24,6 +24,9 @@ gem "nokogiri"
 gem 'rspec-rails'
 # pry debugger
 gem 'pry'
+# dirscord bot
+gem 'discordrb-webhooks'
+gem 'discordrb'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

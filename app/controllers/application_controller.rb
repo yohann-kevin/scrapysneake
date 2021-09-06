@@ -4,6 +4,4 @@ class ApplicationController < ActionController::API
   else
     ENV.store("IMG_API_LINK", "https://scrapysneake.herokuapp.com/images/")
   end
-
-  puts ENV["IMG_API_LINK"]
 end
