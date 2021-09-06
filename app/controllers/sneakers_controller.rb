@@ -6,7 +6,7 @@ class SneakersController < ApplicationController
   # GET /sneakers
   def index
     @sneakers = Sneaker.all
-    send_message_discord
+    # send_message_discord
     render json: @sneakers
   end
 
