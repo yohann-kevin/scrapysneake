@@ -6,13 +6,13 @@ class SneakersController < ApplicationController
   # GET /sneakers
   def index
     @sneakers = Sneaker.all
-    # send_message_discord
+    send_message_discord
     render json: @sneakers
   end
 
   # test discordrb
   def send_message_discord
-    url_webhook = 'https://discord.com/api/webhooks/884541949539926028/uMvlIo3DIajPXnXjMMC3atqK-LSxFapAzKwYrBJpV0M4VgbgoRN4uXd_WlZHgdR4GI4K'.freeze
+    url_webhook = ENV["DISCORD_WEBHOOKS"]
 
     client = Discordrb::Webhooks::Client.new(url: url_webhook)
     client.execute do |builder|
