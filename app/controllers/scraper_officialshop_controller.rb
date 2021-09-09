@@ -11,24 +11,36 @@ class ScraperOfficialshopController < ApplicationController
   end
 
   def self.scrap_man_low_sneaker
-    man_page_url = "https://www.laboutiqueofficielle.com/baskets-chaussures-2/baskets-basses-91.html?sexe=Homme"
+    1.upto(20) {
+      |i|
+    man_page_url = "https://www.laboutiqueofficielle.com/baskets-chaussures-2/baskets-basses-91.html?sexe=Homme&page=" + i.to_s
     man_page = URI.parse(man_page_url).open
     man_page_html = Nokogiri::HTML(man_page)
     find_sneaker(man_page_html, "man")
+    }
+    return @sneaker__official_shop
   end
 
   def self.scrap_women_low_sneaker
-    women_page_url = "https://www.laboutiqueofficielle.com/baskets-chaussures-2/baskets-basses-91.html?sexe=Femme"
-    women_page = URI.parse(women_page_url).open
-    women_page_html = Nokogiri::HTML(women_page)
-    find_sneaker(women_page_html, "women")
+    1.upto(7) {
+      |i|
+      women_page_url = "https://www.laboutiqueofficielle.com/baskets-chaussures-2/baskets-basses-91.html?sexe=Femme&page=" + i.to_s
+      women_page = URI.parse(women_page_url).open
+      women_page_html = Nokogiri::HTML(women_page)
+      find_sneaker(women_page_html, "women")
+    }
+    return @sneaker__official_shop
   end
 
   def self.scrap_man_high_sneaker
-    man_page_url = "https://www.laboutiqueofficielle.com/baskets-chaussures-2/baskets-montantes-92.html?sexe=Homme"
-    man_page = URI.parse(man_page_url).open
-    man_page_html = Nokogiri::HTML(man_page)
-    find_sneaker(man_page_html, "man")
+    1.upto(2) {
+      |i|
+      man_page_url = "https://www.laboutiqueofficielle.com/baskets-chaussures-2/baskets-montantes-92.html?sexe=Homme&page=" + i.to_s
+      man_page = URI.parse(man_page_url).open
+      man_page_html = Nokogiri::HTML(man_page)
+      find_sneaker(man_page_html, "man")
+    }
+    return @sneaker__official_shop
   end
 
   def self.scrap_women_high_sneaker
