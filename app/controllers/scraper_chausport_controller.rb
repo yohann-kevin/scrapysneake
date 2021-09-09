@@ -17,6 +17,7 @@ class ScraperChausportController < ApplicationController
       man_page_html = Nokogiri::HTML(man_page)
       find_sneakers(man_page_html, "man")
     }
+    return @sneaker_chausport
   end
 
   def self.scrap_women_sneaker
@@ -28,6 +29,7 @@ class ScraperChausportController < ApplicationController
       women_page_html = Nokogiri::HTML(women_page)
       find_sneakers(women_page_html, "man")
     }
+    return @sneaker_chausport
   end
 
   def self.find_sneakers(page, gender)
