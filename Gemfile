@@ -19,9 +19,9 @@ gem 'puma', '~> 5.0'
 # for api
 gem 'rack-cors'
 # nokogiri
-gem "nokogiri"
+gem "nokogiri", ">= 1.12.5"
 # spec
-gem 'rspec-rails'
+gem 'rspec-rails', '>= 5.0.2'
 # pry debugger
 gem 'pry'
 # dirscord bot
