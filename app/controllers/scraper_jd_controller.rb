@@ -9,10 +9,16 @@ class ScraperJdController < ApplicationController
   end
 
   def self.scrap_man_sneaker
-    home_page_url = "https://www.jdsports.fr/homme/chaussures-homme/baskets"
-    @home_html = URI.parse(home_page_url).open
-    home_page = Nokogiri::HTML(@home_html)
-    find_sneaker(home_page, "man")
+    index = 0
+    0.upto(10) {
+      home_page_url = "https://www.jdsports.fr/homme/chaussures-homme/baskets/?from=" + index.to_s
+      puts home_page_url
+      @home_html = URI.parse(home_page_url).open
+      home_page = Nokogiri::HTML(@home_html)
+      find_sneaker(home_page, "man")
+      index += 72
+    }
+    return @sneaker_jd
   end
 
   def self.find_sneaker(page, gender)
