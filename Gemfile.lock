@@ -213,12 +213,12 @@ DEPENDENCIES
   discordrb-webhooks
   listen (~> 3.3)
   mysql2 (~> 0.5.2)
-  nokogiri
+  nokogiri (>= 1.12.5)
   pry
   puma (~> 5.0)
   rack-cors
   rails (~> 6.1.4, >= 6.1.4.1)
-  rspec-rails
+  rspec-rails (>= 5.0.2)
   spring
   sqlite3 (~> 1.4)
   tzinfo-data
