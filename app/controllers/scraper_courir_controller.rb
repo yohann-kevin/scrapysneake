@@ -20,6 +20,8 @@ class ScraperCourirController < ApplicationController
     # home_page_url = "https://www.titoloshop.com/eu_en/men/sneakers?p=4" valider !
     # home_page_url = "https://www.flightclub.com/sneakers?page=12" valider !
 
+    # home_page_url = "https://www.jdsports.fr/homme/chaussures-homme/baskets/" valider !
+
     home_html = URI.parse(home_page_url).open
     home_page = Nokogiri::HTML(home_html)
     puts home_page

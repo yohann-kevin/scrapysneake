@@ -3,7 +3,7 @@ require "open-uri"
 
 class ScraperOfficialshopController < ApplicationController
   def self.scrap_officialshop
-    @sneaker__official_shop = []
+    @sneaker_official_shop = []
     scrap_man_low_sneaker
     scrap_women_low_sneaker
     scrap_man_high_sneaker
@@ -13,12 +13,12 @@ class ScraperOfficialshopController < ApplicationController
   def self.scrap_man_low_sneaker
     1.upto(20) {
       |i|
-    man_page_url = "https://www.laboutiqueofficielle.com/baskets-chaussures-2/baskets-basses-91.html?sexe=Homme&page=" + i.to_s
-    man_page = URI.parse(man_page_url).open
-    man_page_html = Nokogiri::HTML(man_page)
-    find_sneaker(man_page_html, "man")
+      man_page_url = "https://www.laboutiqueofficielle.com/baskets-chaussures-2/baskets-basses-91.html?sexe=Homme&page=" + i.to_s
+      man_page = URI.parse(man_page_url).open
+      man_page_html = Nokogiri::HTML(man_page)
+      find_sneaker(man_page_html, "man")
     }
-    return @sneaker__official_shop
+    return @sneaker_official_shop
   end
 
   def self.scrap_women_low_sneaker
@@ -29,7 +29,7 @@ class ScraperOfficialshopController < ApplicationController
       women_page_html = Nokogiri::HTML(women_page)
       find_sneaker(women_page_html, "women")
     }
-    return @sneaker__official_shop
+    return @sneaker_official_shop
   end
 
   def self.scrap_man_high_sneaker
@@ -40,7 +40,7 @@ class ScraperOfficialshopController < ApplicationController
       man_page_html = Nokogiri::HTML(man_page)
       find_sneaker(man_page_html, "man")
     }
-    return @sneaker__official_shop
+    return @sneaker_official_shop
   end
 
   def self.scrap_women_high_sneaker
@@ -60,7 +60,7 @@ class ScraperOfficialshopController < ApplicationController
       section = page.css(".c-product-thumbnail")[el]
       mark = section.css(".c-product-thumbnail__title").text
       model = section.css(".c-product-thumbnail__desc").text
-      @sneaker__official_shop << {
+      @sneaker_official_shop << {
         "model" => build_model(mark, model),
         "price" => section.css(".c-price").text,
         "link" => "#{initial_link}#{page.css(".c-product-thumbnail")[el]["href"]}",
@@ -84,10 +84,10 @@ class ScraperOfficialshopController < ApplicationController
   end
 
   def self.save_sneaker_official_shop
-    @sneaker__official_shop.each do |el|
+    @sneaker_official_shop.each do |el|
       sneaker = Sneaker.add_new_sneaker(el)
       sneaker.save if sneaker != nil
     end
-    return @sneaker__official_shop
+    return @sneaker_official_shop
   end
 end
