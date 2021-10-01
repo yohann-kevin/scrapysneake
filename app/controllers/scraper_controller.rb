@@ -14,7 +14,9 @@ class ScraperController < ApplicationController
       "data" => sneaker = {
         "foot_locker" => check_foot_locker(webapps),
         "chausport" => check_chausport(webapps),
-        "official_shop" => check_official_shop(webapps)
+        "official_shop" => check_official_shop(webapps),
+        "jd_sport" => check_jd(webapps),
+        "test" => test_site_scrap(webapps)
       }
     }
   end
@@ -40,6 +42,21 @@ class ScraperController < ApplicationController
   def check_official_shop(webapps)
     webapps.each do |el|
       return ScraperOfficialshopController.scrap_officialshop if el == "officialShop"
+    end
+    nil
+  end
+
+  def check_jd(webapps)
+    webapps.each do |el|
+      return ScraperJdController.scrap_jd if el == "jd"
+    end
+    nil
+  end
+
+  # for test site
+  def test_site_scrap(webapps)
+    webapps.each do |el|
+      return ScraperCourirController.scrap_courir if el == "courir"
     end
     nil
   end
