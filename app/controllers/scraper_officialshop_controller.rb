@@ -7,7 +7,7 @@ class ScraperOfficialshopController < ApplicationController
     if gender == "women"
       scrap_women_low_sneaker
       scrap_women_high_sneaker
-    elsif 
+    elsif gender == "man"
       scrap_man_low_sneaker
       scrap_man_high_sneaker
     else
