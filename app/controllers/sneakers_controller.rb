@@ -1,28 +1,10 @@
-require 'discordrb/webhooks'
-
 class SneakersController < ApplicationController
   before_action :set_sneaker, only: [:show, :update, :destroy]
 
   # GET /sneakers
   def index
     @sneakers = Sneaker.all
-    # send_message_discord
     render json: @sneakers
-  end
-
-  # test discordrb
-  def send_message_discord
-    url_webhook = ENV["DISCORD_WEBHOOKS"]
-
-    client = Discordrb::Webhooks::Client.new(url: url_webhook)
-    client.execute do |builder|
-      builder.content = 'Hello world!'
-      builder.add_embed do |embed|
-        embed.title = 'Embed title'
-        embed.description = 'Embed description'
-        embed.timestamp = Time.now
-      end
-    end
   end
 
   # GET /sneakers/1
