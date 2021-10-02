@@ -3,9 +3,16 @@ require "open-uri"
 
 class ScraperJdController < ApplicationController
 
-  def self.scrap_jd
+  def self.scrap_jd(gender)
     @sneaker_jd = []
-    scrap_man_sneaker
+    if gender == "women"
+      scrap_women_sneaker
+    elsif gender == "man"
+      # scrap_man_sneaker
+    else
+      scrap_jd("women")
+      scrap_jd("man")
+    end
   end
 
   def self.scrap_man_sneaker
@@ -21,9 +28,22 @@ class ScraperJdController < ApplicationController
     return @sneaker_jd
   end
 
+  def self.scrap_women_sneaker
+    index = 0
+    0.upto(6) {
+      home_page_url = "https://www.jdsports.fr/femme/chaussures-femme/baskets/?from=" + index.to_s
+      puts home_page_url
+      @home_html = URI.parse(home_page_url).open
+      home_page = Nokogiri::HTML(@home_html)
+      find_sneaker(home_page, "women")
+      index += 72
+    }
+    return @sneaker_jd
+  end
+
   def self.find_sneaker(page, gender)
     page_size = page.css(".productListItem").length
-
+    puts page_size
     0.upto(page_size - 1) {
       |el|
       puts el

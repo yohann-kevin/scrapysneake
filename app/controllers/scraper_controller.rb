@@ -43,7 +43,7 @@ class ScraperController < ApplicationController
 
   def check_jd(webapps)
     webapps.each do |el|
-      return ScraperJdController.scrap_jd if el == "jd"
+      return ScraperJdController.scrap_jd(@gender) if el == "jd"
     end
     nil
   end
