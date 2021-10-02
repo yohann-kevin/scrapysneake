@@ -27,6 +27,11 @@ gem 'pry'
 # dirscord bot
 gem 'discordrb-webhooks'
 gem 'discordrb'
+# monitoring with sentry
+gem "sentry-ruby"
+gem "sentry-rails"
+gem 'sentry-sidekiq'
+gem 'sentry-resque'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
