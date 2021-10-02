@@ -4,6 +4,8 @@ class ScraperController < ApplicationController
   def scrap
     # ScraperCourirController.scrap_courir
     webapps = analyze_params(params[:webapp])
+    @gender = params[:gender]
+    puts @gender
     puts " "
     render json: @data = find_sneakers(webapps)
   end
@@ -32,16 +34,9 @@ class ScraperController < ApplicationController
     nil
   end
 
-  def check_chausport(webapps)
-    webapps.each do |el|
-      return ScraperChausportController.scrap_chausport if el == "chausport"
-    end
-    nil
-  end
-
   def check_official_shop(webapps)
     webapps.each do |el|
-      return ScraperOfficialshopController.scrap_officialshop if el == "officialShop"
+      return ScraperOfficialshopController.scrap_officialshop(@gender) if el == "officialShop"
     end
     nil
   end
@@ -57,6 +52,14 @@ class ScraperController < ApplicationController
   def test_site_scrap(webapps)
     webapps.each do |el|
       return ScraperCourirController.scrap_courir if el == "courir"
+    end
+    nil
+  end
+
+  # out !
+  def check_chausport(webapps)
+    webapps.each do |el|
+      return ScraperChausportController.scrap_chausport if el == "chausport"
     end
     nil
   end

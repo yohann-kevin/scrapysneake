@@ -25,7 +25,6 @@ class ScraperFootlockerController < ApplicationController
   def self.find_sneakers(page, gender)
     initial_url = "https://www.footlocker.fr"
     page_size = page.css(".product-container").length
-    puts "gender : #{gender}"
     0.upto(page_size - 1) {
       |el|
       puts el

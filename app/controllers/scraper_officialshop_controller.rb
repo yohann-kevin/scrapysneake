@@ -2,18 +2,25 @@ require "nokogiri"
 require "open-uri"
 
 class ScraperOfficialshopController < ApplicationController
-  def self.scrap_officialshop
+  def self.scrap_officialshop(gender)
     @sneaker_official_shop = []
-    scrap_man_low_sneaker
-    scrap_women_low_sneaker
-    scrap_man_high_sneaker
-    scrap_women_high_sneaker
+    if gender == "women"
+      scrap_women_low_sneaker
+      scrap_women_high_sneaker
+    elsif 
+      scrap_man_low_sneaker
+      scrap_man_high_sneaker
+    else
+      scrap_officialshop("man")
+      scrap_officialshop("women")
+    end
   end
 
   def self.scrap_man_low_sneaker
     1.upto(20) {
       |i|
       man_page_url = "https://www.laboutiqueofficielle.com/baskets-chaussures-2/baskets-basses-91.html?sexe=Homme&page=" + i.to_s
+      puts man_page_url
       man_page = URI.parse(man_page_url).open
       man_page_html = Nokogiri::HTML(man_page)
       find_sneaker(man_page_html, "man")
@@ -25,6 +32,7 @@ class ScraperOfficialshopController < ApplicationController
     1.upto(7) {
       |i|
       women_page_url = "https://www.laboutiqueofficielle.com/baskets-chaussures-2/baskets-basses-91.html?sexe=Femme&page=" + i.to_s
+      puts women_page_url
       women_page = URI.parse(women_page_url).open
       women_page_html = Nokogiri::HTML(women_page)
       find_sneaker(women_page_html, "women")
@@ -36,6 +44,7 @@ class ScraperOfficialshopController < ApplicationController
     1.upto(2) {
       |i|
       man_page_url = "https://www.laboutiqueofficielle.com/baskets-chaussures-2/baskets-montantes-92.html?sexe=Homme&page=" + i.to_s
+      puts man_page_url
       man_page = URI.parse(man_page_url).open
       man_page_html = Nokogiri::HTML(man_page)
       find_sneaker(man_page_html, "man")
@@ -45,6 +54,7 @@ class ScraperOfficialshopController < ApplicationController
 
   def self.scrap_women_high_sneaker
     women_page_url = "https://www.laboutiqueofficielle.com/baskets-chaussures-2/baskets-montantes-92.html?sexe=Femme"
+    puts women_page_url
     women_page = URI.parse(women_page_url).open
     women_page_html = Nokogiri::HTML(women_page)
     find_sneaker(women_page_html, "women")
