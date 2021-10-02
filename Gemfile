@@ -29,7 +29,7 @@ gem 'discordrb-webhooks'
 gem 'discordrb'
 # monitoring with sentry
 gem "sentry-ruby"
-gem "sentry-rails"
+gem "sentry-rails", ">= 4.7.3"
 gem 'sentry-sidekiq'
 gem 'sentry-resque'
 
