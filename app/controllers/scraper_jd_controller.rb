@@ -6,10 +6,11 @@ class ScraperJdController < ApplicationController
   def self.scrap_jd(gender)
     @sneaker_jd = []
     if gender == "women"
+      # scrap_women_high_sneaker
       # scrap_women_sneaker
     elsif gender == "man"
-      # scrap_man_sneaker
       # scrap_man_high_sneaker
+      # scrap_man_sneaker
     else
       scrap_jd("women")
       scrap_jd("man")
@@ -48,6 +49,15 @@ class ScraperJdController < ApplicationController
     @home_html = URI.parse(home_page_url).open
     home_page = Nokogiri::HTML(@home_html)
     find_sneaker(home_page, "man")
+    return @sneaker_jd
+  end
+
+  def self.scrap_women_high_sneaker
+    home_page_url = "https://www.jdsports.fr/femme/chaussures-femme/?facet-product-type-jd=baskets_hautes"
+    puts home_page_url
+    @home_html = URI.parse(home_page_url).open
+    home_page = Nokogiri::HTML(@home_html)
+    find_sneaker(home_page, "women")
     return @sneaker_jd
   end
 
