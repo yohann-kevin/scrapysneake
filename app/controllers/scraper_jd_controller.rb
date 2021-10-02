@@ -6,12 +6,13 @@ class ScraperJdController < ApplicationController
   def self.scrap_jd(gender)
     @sneaker_jd = []
     if gender == "women"
-      # scrap_women_high_sneaker
-      # scrap_women_sneaker
+      scrap_women_high_sneaker
+      scrap_women_sneaker
+      scrap_women_classic_sneaker
     elsif gender == "man"
-      # scrap_man_high_sneaker
-      # scrap_man_sneaker
-      # scrap_man_classic_sneaker
+      scrap_man_high_sneaker
+      scrap_man_sneaker
+      scrap_man_classic_sneaker
     else
       scrap_jd("women")
       scrap_jd("man")
@@ -64,8 +65,7 @@ class ScraperJdController < ApplicationController
 
   def self.scrap_man_classic_sneaker
     index = 0
-    # 5
-    0.upto(1) {
+    0.upto(5) {
       home_page_url = "https://www.jdsports.fr/homme/chaussures-homme/baskets-classiques/?from=" + index.to_s
       puts home_page_url
       @home_html = URI.parse(home_page_url).open
@@ -76,12 +76,24 @@ class ScraperJdController < ApplicationController
     return @sneaker_jd
   end
 
+  def self.scrap_women_classic_sneaker
+    index = 0
+    0.upto(2) {
+      home_page_url = "https://www.jdsports.fr/femme/chaussures-femme/baskets-classiques/?from=" + index.to_s
+      puts home_page_url
+      @home_html = URI.parse(home_page_url).open
+      home_page = Nokogiri::HTML(@home_html)
+      find_sneaker(home_page, "women")
+      index += 72
+    }
+    return @sneaker_jd
+  end
+
   def self.find_sneaker(page, gender)
     page_size = page.css(".productListItem").length
     puts page_size
     0.upto(page_size - 1) {
       |el|
-      puts el
       section = page.css(".productListItem")[el]
       link = "https://www.jdsports.fr" + section.css(".itemImage")[0]["href"]
       @sneaker_jd << {
