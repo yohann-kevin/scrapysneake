@@ -38,6 +38,10 @@ class Sneaker < ApplicationRecord
     Sneaker.order(wanted: :desc).limit(4)
   end
 
+  def self.find_sneaker_with_seller(seller)
+    Sneaker.where(seller: seller)
+  end
+
   def self.wanted_update(sneaker)
     sneaker.each do |el|
       el["wanted"] += 1

@@ -24,6 +24,12 @@ class SneakersController < ApplicationController
     render json: @sneakers
   end
 
+  def find_sneakers_by_seller
+    @sneaker = Sneaker.find_sneaker_with_seller(params[:seller])
+
+    render json: @sneaker
+  end
+
   # POST /sneakers
   def create
     puts "------------"
