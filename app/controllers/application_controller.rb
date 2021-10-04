@@ -7,7 +7,7 @@ class ApplicationController < ActionController::API
     begin
       yield
     rescue StandardError => e
-      DiscordService.new(request, params, e, e.backtrace.join("\n")).send_error
+      DiscordService.new(request, params, e, e.backtrace.join("\n")).send_error if ENV["RAILS_ENV"] == "production"
       raise e
     end
   end
