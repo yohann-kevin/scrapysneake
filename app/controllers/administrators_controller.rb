@@ -37,10 +37,23 @@ class AdministratorsController < ApplicationController
     administrator = Administrator.find_admin_by_name(user_info["name"])
     password = BCrypt::Password.new(administrator[0].encrypted_password)
     if password == user_info["password"]
-      render json: "token"
+      payload = { user_id: administrator[0].id }
+      token = JWT.encode(payload, nil, 'none')
+      render json: {"token" => token}
     else
       render json: "error"
     end
+  end
+
+  def hmac_secret
+    ENV["API_SECRET_KEY"]
+  end
+
+  def check_token
+    token = request.headers["Authorization"].split(" ")[1]
+    decoded_array = JWT.decode(token, nil, false)
+    payload = decoded_array.first
+    puts payload
   end
 
   # PATCH/PUT /administrators/1

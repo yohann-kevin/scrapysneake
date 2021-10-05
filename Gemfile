@@ -33,6 +33,8 @@ gem "sentry-rails", ">= 4.7.3"
 gem 'sentry-sidekiq'
 gem 'sentry-resque'
 gem "sentry-raven", "~> 3.1"
+# json web token
+gem "jwt"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

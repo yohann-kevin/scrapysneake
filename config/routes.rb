@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   # get "login/find/admin" => "find_admin#check_admin"
 
   post "/login" => "administrators#login_admin"
+  post "/check_token" =>  "administrators#check_token"
 
   get "partner/get" => "partner#send_partner"
 
