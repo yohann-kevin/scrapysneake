@@ -25,9 +25,6 @@ Rails.application.routes.draw do
   get "/login/:log" => "login#find_logs"
   get "login/find/admin" => "find_admin#check_admin"
 
-  get "admin/add/:adm" => "admin#add_admin"
-  get "admin/get" => "admin#read_data"
-
   get "partner/get" => "partner#send_partner"
 
   get "about/get" => "about#send_about"
