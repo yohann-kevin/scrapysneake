@@ -32,6 +32,17 @@ class AdministratorsController < ApplicationController
     end
   end
 
+  def login_admin
+    user_info = JSON.parse(request.body.read)
+    administrator = Administrator.find_admin_by_name(user_info["name"])
+    password = BCrypt::Password.new(administrator[0].encrypted_password)
+    if password == user_info["password"]
+      render json: "token"
+    else
+      render json: "error"
+    end
+  end
+
   # PATCH/PUT /administrators/1
   def update
     if @administrator.update(administrator_params)

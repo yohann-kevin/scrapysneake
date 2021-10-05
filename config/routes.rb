@@ -22,8 +22,10 @@ Rails.application.routes.draw do
 
   get "/advert" => "advert#send_image_carousel"
 
-  get "/login/:log" => "login#find_logs"
-  get "login/find/admin" => "find_admin#check_admin"
+  # get "/login/:log" => "login#find_logs"
+  # get "login/find/admin" => "find_admin#check_admin"
+
+  post "/login" => "administrators#login_admin"
 
   get "partner/get" => "partner#send_partner"
 
