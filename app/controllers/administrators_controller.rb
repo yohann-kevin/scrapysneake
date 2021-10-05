@@ -1,3 +1,5 @@
+require 'bcrypt'
+
 class AdministratorsController < ApplicationController
   before_action :set_administrator, only: [:show, :update, :destroy]
 
@@ -15,7 +17,13 @@ class AdministratorsController < ApplicationController
 
   # POST /administrators
   def create
-    @administrator = Administrator.new(administrator_params)
+    admin_name = administrator_params["name"]
+    admin_password = BCrypt::Password.create(administrator_params["encrypted_password"])
+    admin = {
+      "name" => admin_name,
+      "encrypted_password" => admin_password
+    }
+    @administrator = Administrator.new(admin)
 
     if @administrator.save
       render json: @administrator, status: :created, location: @administrator
