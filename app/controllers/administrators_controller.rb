@@ -1,3 +1,5 @@
+require 'bcrypt'
+
 class AdministratorsController < ApplicationController
   before_action :set_administrator, only: [:show, :update, :destroy]
 
@@ -15,7 +17,13 @@ class AdministratorsController < ApplicationController
 
   # POST /administrators
   def create
-    @administrator = Administrator.new(administrator_params)
+    admin_name = administrator_params["name"]
+    admin_password = BCrypt::Password.create(administrator_params["encrypted_password"])
+    admin = {
+      "name" => admin_name,
+      "encrypted_password" => admin_password
+    }
+    @administrator = Administrator.new(admin)
 
     if @administrator.save
       render json: @administrator, status: :created, location: @administrator
@@ -23,6 +31,30 @@ class AdministratorsController < ApplicationController
       render json: @administrator.errors, status: :unprocessable_entity
     end
   end
+
+  def login_admin
+    user_info = JSON.parse(request.body.read)
+    administrator = Administrator.find_admin_by_name(user_info["name"])
+    password = BCrypt::Password.new(administrator[0].encrypted_password)
+    if password == user_info["password"]
+      payload = { user_id: administrator[0].id }
+      token = JWT.encode(payload, nil, 'none')
+      render json: {"token" => token}
+    else
+      render json: "error"
+    end
+  end
+
+  # def hmac_secret
+  #   ENV["API_SECRET_KEY"]
+  # end
+
+  # def check_token
+  #   token = request.headers["Authorization"].split(" ")[1]
+  #   decoded_array = JWT.decode(token, nil, false)
+  #   payload = decoded_array.first
+  #   puts payload
+  # end
 
   # PATCH/PUT /administrators/1
   def update

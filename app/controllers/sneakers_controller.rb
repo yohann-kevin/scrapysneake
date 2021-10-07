@@ -1,4 +1,5 @@
 class SneakersController < ApplicationController
+  skip_before_action :authorized
   before_action :set_sneaker, only: [:show, :update, :destroy]
 
   # GET /sneakers

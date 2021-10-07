@@ -13,9 +13,9 @@ gem 'puma', '~> 5.0'
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
+# Use Active Model has_secure_password
+gem 'bcrypt', '~> 3.1.7'
 # for api
 gem 'rack-cors'
 # nokogiri
@@ -32,6 +32,9 @@ gem "sentry-ruby"
 gem "sentry-rails", ">= 4.7.3"
 gem 'sentry-sidekiq'
 gem 'sentry-resque'
+gem "sentry-raven", "~> 3.1"
+# json web token
+gem "jwt"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -60,5 +63,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem "sentry-raven", "~> 3.1"

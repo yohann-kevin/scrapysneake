@@ -22,11 +22,11 @@ Rails.application.routes.draw do
 
   get "/advert" => "advert#send_image_carousel"
 
-  get "/login/:log" => "login#find_logs"
-  get "login/find/admin" => "find_admin#check_admin"
+  # get "/login/:log" => "login#find_logs"
+  # get "login/find/admin" => "find_admin#check_admin"
 
-  get "admin/add/:adm" => "admin#add_admin"
-  get "admin/get" => "admin#read_data"
+  post "/login" => "administrators#login_admin"
+  # post "/check_token" =>  "administrators#check_token"
 
   get "partner/get" => "partner#send_partner"
 

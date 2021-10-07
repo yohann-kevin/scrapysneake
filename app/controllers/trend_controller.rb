@@ -1,4 +1,5 @@
 class TrendController < ApplicationController
+  skip_before_action :authorized
 
   def initialize
     @img_link = ENV.fetch("IMG_API_LINK")
