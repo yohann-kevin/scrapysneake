@@ -2,6 +2,7 @@ require 'bcrypt'
 
 class AdministratorsController < ApplicationController
   before_action :set_administrator, only: [:show, :update, :destroy]
+  skip_before_action :authorized, only: [:login_admin]
 
   # GET /administrators
   def index
@@ -39,9 +40,22 @@ class AdministratorsController < ApplicationController
     if password == user_info["password"]
       payload = { user_id: administrator[0].id }
       token = JWT.encode(payload, nil, 'none')
-      render json: {"token" => token}
+      render json: {
+        "token" => token,
+        "response" => {
+          "is_users" => true,
+          "name" => true,
+          "pass" => true
+        }
+      }
     else
-      render json: "error"
+      render json: {
+        "response" => {
+          "is_users" => false,
+          "name" => false,
+          "pass" => false
+        }
+      }
     end
   end
 
