@@ -1,10 +1,6 @@
 class DiscordScheduler
-  def initialize
-    @url_webhook = ENV["DISCORD_WEBHOOKS"]
-  end
-  
-  def send_scheduler_message
-    client = Discordrb::Webhooks::Client.new(url: @url_webhook)
+  def self.send_scheduler_message
+    client = Discordrb::Webhooks::Client.new(url: ENV["DISCORD_WEBHOOKS"])
     client.execute do |builder|
       builder.content = 'Scheduler run !'
       builder.add_embed do |embed|
