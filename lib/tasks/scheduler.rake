@@ -7,18 +7,39 @@
 
 desc "Scrap sneaker in foot locker"
 task scrap_sneaker_foot_locker: :environment do
-  puts "scrap sneaker in foot locker"
-  ScraperFootlockerController.scrap_foot_locker
+  msg =  "scrap sneaker in foot locker"
+  puts msg
+  begin
+    ScraperFootlockerController.scrap_foot_locker
+    DiscordSchedulerService.new(msg).send_scheduler_message
+  rescue => err
+    DiscordErrorService.new("scheduler", "for foot locker", err, err.backtrace.join("\n")).send_error
+    raise err
+  end
 end
 
 desc "Scrap man sneaker in official shop"
 task scrap_man_sneaker_official_shop: :environment do
-  puts "scrap man sneaker in official_shop"
-  ScraperOfficialshopController.scrap_officialshop("man")
+  msg = "scrap man sneaker in official_shop"
+  puts msg
+  begin
+    ScraperOfficialshopController.scrap_officialshop("man")
+    DiscordSchedulerService.new(msg).send_scheduler_message
+  rescue => err
+    DiscordErrorService.new("scheduler", "for man official shop", err, err.backtrace.join("\n")).send_error
+    raise err
+  end
 end
 
 desc "Scrap women sneaker in official shop"
 task scrap_women_sneaker_official_shop: :environment do
-  puts "scrap women sneaker in official shop"
-  ScraperOfficialshopController.scrap_officialshop("women")
+  msg = "scrap women sneaker in official shop"
+  puts msg
+  begin
+    ScraperOfficialshopController.scrap_officialshop("women")
+    DiscordSchedulerService.new(msg).send_scheduler_message
+  rescue => err
+    DiscordErrorService.new("scheduler", "for women official shop", err, err.backtrace.join("\n")).send_error
+    raise err
+  end
 end
