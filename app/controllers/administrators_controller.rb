@@ -45,16 +45,16 @@ class AdministratorsController < ApplicationController
     end
   end
 
-  def hmac_secret
-    ENV["API_SECRET_KEY"]
-  end
+  # def hmac_secret
+  #   ENV["API_SECRET_KEY"]
+  # end
 
-  def check_token
-    token = request.headers["Authorization"].split(" ")[1]
-    decoded_array = JWT.decode(token, nil, false)
-    payload = decoded_array.first
-    puts payload
-  end
+  # def check_token
+  #   token = request.headers["Authorization"].split(" ")[1]
+  #   decoded_array = JWT.decode(token, nil, false)
+  #   payload = decoded_array.first
+  #   puts payload
+  # end
 
   # PATCH/PUT /administrators/1
   def update
