@@ -1,6 +1,6 @@
 require 'discordrb/webhooks'
 
-class DiscordService
+class DiscordErrorService
   def initialize(request, params, error, stack_trace)
     @request = request
     @params = params

@@ -1,4 +1,4 @@
-class DiscordScheduler
+class DiscordSchedulerService
   def self.send_scheduler_message
     client = Discordrb::Webhooks::Client.new(url: ENV["DISCORD_WEBHOOKS"])
     client.execute do |builder|
