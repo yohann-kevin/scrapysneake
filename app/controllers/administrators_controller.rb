@@ -2,7 +2,7 @@ require 'bcrypt'
 
 class AdministratorsController < ApplicationController
   before_action :set_administrator, only: [:show, :update, :destroy]
-  skip_before_action :authorized, only: [:login_admin, :create]
+  skip_before_action :authorized, only: [:login_admin]
 
   # GET /administrators
   def index
