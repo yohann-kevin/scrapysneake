@@ -1,4 +1,6 @@
 class ScraperController < ApplicationController
+  skip_before_action :authorized
+
   # http://localhost:3000/scrap/footLocker&chausport&officialShop
 
   def scrap
@@ -18,6 +20,7 @@ class ScraperController < ApplicationController
         "chausport" => check_chausport(webapps),
         "official_shop" => check_official_shop(webapps),
         "jd_sport" => check_jd(webapps),
+        "flight_club" => check_flight_club(webapps),
         "test" => test_site_scrap(webapps)
       }
     }
@@ -44,6 +47,13 @@ class ScraperController < ApplicationController
   def check_jd(webapps)
     webapps.each do |el|
       return ScraperJdController.scrap_jd(@gender) if el == "jd"
+    end
+    nil
+  end
+
+  def check_flight_club(webapps)
+    webapps.each do |el|
+      return ScraperFlightClubController.scrap_flight_club if el == "flightClub"
     end
     nil
   end
