@@ -67,9 +67,15 @@ class SneakersController < ApplicationController
       "#{seller[0]}" => Sneaker.find_most_seller(seller[0]),
       "#{seller[1]}" => Sneaker.find_most_seller(seller[1]),
       "#{seller[2]}" => Sneaker.find_most_seller(seller[2]),
+      "#{seller[3]}" => Sneaker.find_most_seller(seller[3])
     }
 
     render json: most_seller
+  end
+
+  def best_seller_price
+    sneaker = Sneaker.find_best_seller_price
+    render json: { "sneaker": sneaker }
   end
 
   # PATCH/PUT /sneakers/1
@@ -87,7 +93,6 @@ class SneakersController < ApplicationController
   end
 
   def delete_sneakers_by_seller
-    # puts params[:seller]
     if Rails.env == "development"
       Sneaker.remove_sneakers_by_seller(params[:seller])
     else

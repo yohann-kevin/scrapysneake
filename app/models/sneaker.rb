@@ -35,7 +35,7 @@ class Sneaker < ApplicationRecord
   end
 
   def self.find_most_wanted_sneakers
-    Sneaker.order(wanted: :desc).limit(4)
+    Sneaker.order(wanted: :desc).limit(8)
   end
 
   def self.find_sneaker_with_seller(seller)
@@ -81,5 +81,50 @@ class Sneaker < ApplicationRecord
       counter += el["wanted"]
     end
     return counter
+  end
+
+  def self.find_best_seller_price
+    @seller_price_average = {
+      "foot_locker" => 0,
+      "official_shop" => 0,
+      "jd_sports" => 0,
+      "corner" => 0,
+      "error" => 0
+    }
+
+    @foot_locker_count = 0
+    @official_shop_count = 0
+    @jd_sport_count = 0
+    @corner_count = 0
+
+    all_sneakers = Sneaker.all
+    all_sneakers.each do |el|
+      compute_all_seller_price(el)
+    end
+
+    @seller_price_average["foot_locker"] = @seller_price_average["foot_locker"] / @foot_locker_count
+    @seller_price_average["official_shop"] = @seller_price_average["official_shop"] / @official_shop_count
+    @seller_price_average["jd_sports"] = @seller_price_average["jd_sports"] / @jd_sport_count
+    @seller_price_average["corner"] = @seller_price_average["corner"] / @corner_count
+
+    return @seller_price_average
+  end
+
+  def self.compute_all_seller_price(sneaker)
+    if sneaker.seller.downcase == "foot locker"
+      @foot_locker_count += 1
+      @seller_price_average["foot_locker"] += sneaker.price
+    elsif sneaker.seller.downcase == "la boutique officielle"
+      @official_shop_count += 1
+      @seller_price_average["official_shop"] += sneaker.price
+    elsif sneaker.seller.downcase == "jdsports"
+      @jd_sport_count += 1
+      @seller_price_average["jd_sports"] += sneaker.price
+    elsif sneaker.seller.downcase == "corner"
+      @corner_count += 1
+      @seller_price_average["corner"] += sneaker.price
+    else
+      @seller_price_average["error"] += 1
+    end
   end
 end
