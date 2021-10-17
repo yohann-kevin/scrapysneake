@@ -73,6 +73,11 @@ class SneakersController < ApplicationController
     render json: most_seller
   end
 
+  def best_seller_price
+    sneaker = Sneaker.find_best_seller_price
+    render json: { "sneaker": sneaker }
+  end
+
   # PATCH/PUT /sneakers/1
   def update
     if @sneaker.update(sneaker_params)
@@ -88,7 +93,6 @@ class SneakersController < ApplicationController
   end
 
   def delete_sneakers_by_seller
-    # puts params[:seller]
     if Rails.env == "development"
       Sneaker.remove_sneakers_by_seller(params[:seller])
     else
