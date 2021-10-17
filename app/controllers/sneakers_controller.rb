@@ -67,6 +67,7 @@ class SneakersController < ApplicationController
       "#{seller[0]}" => Sneaker.find_most_seller(seller[0]),
       "#{seller[1]}" => Sneaker.find_most_seller(seller[1]),
       "#{seller[2]}" => Sneaker.find_most_seller(seller[2]),
+      "#{seller[3]}" => Sneaker.find_most_seller(seller[3])
     }
 
     render json: most_seller

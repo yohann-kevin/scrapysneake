@@ -35,7 +35,7 @@ class Sneaker < ApplicationRecord
   end
 
   def self.find_most_wanted_sneakers
-    Sneaker.order(wanted: :desc).limit(4)
+    Sneaker.order(wanted: :desc).limit(8)
   end
 
   def self.find_sneaker_with_seller(seller)
