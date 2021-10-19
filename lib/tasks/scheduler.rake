@@ -43,3 +43,29 @@ task scrap_women_sneaker_official_shop: :environment do
     raise err
   end
 end
+
+desc "Scrap man sneaker in jd sport shop"
+task scrap_man_sneaker_in_jd: :environment do
+  msg = "Scrap man sneaker in jd sport shop"
+  puts msg
+  begin
+    ScraperJdController.scrap_jd("man")
+    DiscordSchedulerService.new(msg).send_scheduler_message
+  rescue => err
+    DiscordErrorService.new("scheduler", "for man jd sport shop", err, err.backtrace.join("\n")).send_error
+    raise err
+  end
+end
+
+desc "Scrap women sneaker in jd sport shop"
+task scrap_women_sneaker_in_jd: :environment do
+  msg = "Scrap women sneaker in jd sport shop"
+  puts msg
+  begin
+    ScraperJdController.scrap_jd("women")
+    DiscordSchedulerService.new(msg).send_scheduler_message
+  rescue => err
+    DiscordErrorService.new("scheduler", "for women jd sport shop", err, err.backtrace.join("\n")).send_error
+    raise err
+  end
+end
