@@ -78,9 +78,17 @@ class Sneaker < ApplicationRecord
     counter = 0
     sneakers = Sneaker.where(seller: seller)
     sneakers.each do |el|
-      counter += el["wanted"]
+      counter += el[:wanted]
     end
     return counter
+  end
+
+  def self.increment_wanted(id)
+    sneaker = Sneaker.find_by(id: id)
+    if sneaker != nil
+      sneaker[:wanted] += 1
+      sneaker.save
+    end
   end
 
   def self.find_best_seller_price

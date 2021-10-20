@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   post "/sneakers/delete/:seller" => "sneakers#delete_sneakers_by_seller"
   post "/sneakers/delete/all" => "sneakers#reset_all_sneakers_data"
 
+  post "/sneakers/click" => "sneakers#update_wanted"
+
   resources :messages
 
   get "/sneakers/find/:model" => "sneakers#find_sneakers"
@@ -25,11 +27,7 @@ Rails.application.routes.draw do
 
   get "/advert" => "advert#send_image_carousel"
 
-  # get "/login/:log" => "login#find_logs"
-  # get "login/find/admin" => "find_admin#check_admin"
-
   post "/login" => "administrators#login_admin"
-  # post "/check_token" =>  "administrators#check_token"
 
   get "partner/get" => "partner#send_partner"
 
