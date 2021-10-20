@@ -1,10 +1,3 @@
-# exemple : 
-# desc "test heroku scheduler"
-# task test_heroku_scheduler: :environment do
-#   puts "sending message to discord"
-#   DiscordScheduler.send_scheduler_message
-# end
-
 desc "Scrap sneaker in foot locker"
 task scrap_sneaker_foot_locker: :environment do
   msg =  "scrap sneaker in foot locker"
@@ -13,6 +6,8 @@ task scrap_sneaker_foot_locker: :environment do
     ScraperFootlockerController.scrap_foot_locker
     DiscordSchedulerService.new(msg).send_scheduler_message
   rescue => err
+    error_save = FailedJob.new({ name: "scheduler", description: "for foot locker", error: err, stack_trace: err.backtrace.join("\n") })
+    error_save.save
     DiscordErrorService.new("scheduler", "for foot locker", err, err.backtrace.join("\n")).send_error
     raise err
   end
@@ -26,6 +21,8 @@ task scrap_man_sneaker_official_shop: :environment do
     ScraperOfficialshopController.scrap_officialshop("man")
     DiscordSchedulerService.new(msg).send_scheduler_message
   rescue => err
+    error_save = FailedJob.new({ name: "scheduler", description: "for man official shop", error: err, stack_trace: err.backtrace.join("\n") })
+    error_save.save
     DiscordErrorService.new("scheduler", "for man official shop", err, err.backtrace.join("\n")).send_error
     raise err
   end
@@ -39,6 +36,8 @@ task scrap_women_sneaker_official_shop: :environment do
     ScraperOfficialshopController.scrap_officialshop("women")
     DiscordSchedulerService.new(msg).send_scheduler_message
   rescue => err
+    error_save = FailedJob.new({ name: "scheduler", description: "for women official shop", error: err, stack_trace: err.backtrace.join("\n") })
+    error_save.save
     DiscordErrorService.new("scheduler", "for women official shop", err, err.backtrace.join("\n")).send_error
     raise err
   end
@@ -52,6 +51,8 @@ task scrap_man_sneaker_in_jd: :environment do
     ScraperJdController.scrap_jd("man")
     DiscordSchedulerService.new(msg).send_scheduler_message
   rescue => err
+    error_save = FailedJob.new({ name: "scheduler", description: "for man jd sport", error: err, stack_trace: err.backtrace.join("\n") })
+    error_save.save
     DiscordErrorService.new("scheduler", "for man jd sport shop", err, err.backtrace.join("\n")).send_error
     raise err
   end
@@ -65,6 +66,8 @@ task scrap_women_sneaker_in_jd: :environment do
     ScraperJdController.scrap_jd("women")
     DiscordSchedulerService.new(msg).send_scheduler_message
   rescue => err
+    error_save = FailedJob.new({ name: "scheduler", description: "for women jd sport", error: err, stack_trace: err.backtrace.join("\n") })
+    error_save.save
     DiscordErrorService.new("scheduler", "for women jd sport shop", err, err.backtrace.join("\n")).send_error
     raise err
   end

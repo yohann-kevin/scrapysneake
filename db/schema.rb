@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_05_091326) do
+ActiveRecord::Schema.define(version: 2021_10_20_183117) do
 
   create_table "administrators", force: :cascade do |t|
     t.string "name"
     t.string "encrypted_password"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "failed_jobs", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "error"
+    t.string "stack_trace"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
