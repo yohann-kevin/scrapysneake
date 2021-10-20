@@ -87,6 +87,10 @@ class SneakersController < ApplicationController
     end
   end
 
+  def update_wanted
+    Sneaker.increment_wanted(sneaker_params["id"])
+  end
+
   # DELETE /sneakers/1
   def destroy
     @sneaker.destroy
@@ -116,6 +120,6 @@ class SneakersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def sneaker_params
-      params.permit(:model, :price, :link, :gender, :seller, :image_path)
+      params.permit(:id, :model, :price, :link, :gender, :seller, :image_path)
     end
 end
