@@ -51,9 +51,9 @@ task scrap_man_sneaker_in_jd: :environment do
     ScraperJdController.scrap_jd("man")
     DiscordSchedulerService.new(msg).send_scheduler_message
   rescue => err
-    error_save = FailedJob.new({ name: "scheduler", description: msg error: err, stack_trace: err.backtrace.join("\n") })
+    error_save = FailedJob.new({ name: "scheduler", description: msg, error: err, stack_trace: err.backtrace.join("\n") })
     error_save.save
-    DiscordErrorService.new("scheduler", msg err, err.backtrace.join("\n")).send_error
+    DiscordErrorService.new("scheduler", msg, err, err.backtrace.join("\n")).send_error
     raise err
   end
 end
