@@ -48,6 +48,7 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
       
+      # install libsodium for discordrb and rspec
       - name: install sodium
         run: sudo apt-get install libsodium-dev
         
@@ -58,3 +59,7 @@ jobs:
       # run rails test
       - name: Run rails test
         run: bundle exec rake test
+
+      # run rubocop code linter
+      - name: Run rubocop code linter
+        run: bundle exec rubocop
