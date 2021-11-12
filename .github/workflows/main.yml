@@ -49,7 +49,7 @@ jobs:
           echo test, and deploy your project.
       
       - name: install sodium
-        run: sudo port install libsodium
+        run: sudo apt-get install libsodium
         
       # run rspec test
       - name: Run rspec test
