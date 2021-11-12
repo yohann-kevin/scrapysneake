@@ -48,7 +48,10 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
         
-      # run test
-      - name: Run a test
+      # run rspec test
+      - name: Run rspec test
         run: bundle exec rspec
 
+      # run rails test
+      - name: Run rails test
+        run: bundle exec rake test
