@@ -47,6 +47,9 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+      
+      - name: install sodium
+        run: sudo port install libsodium
         
       # run rspec test
       - name: Run rspec test
