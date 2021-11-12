@@ -205,6 +205,8 @@ GEM
     rubocop-rspec (2.6.0)
       rubocop (~> 1.19)
     ruby-progressbar (1.11.0)
+    sodium (0.7.1)
+      ffi (~> 1)
     spring (3.0.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -252,6 +254,7 @@ DEPENDENCIES
   rubocop (~> 1.22)
   rubocop-rails
   rubocop-rspec
+  sodium
   spring
   sqlite3 (~> 1.4)
   tzinfo-data
