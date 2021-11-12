@@ -12,6 +12,7 @@ jobs:
       - run: sudo apt update
       - run: sudo apt-get update
       - run: sudo apt-get install libsqlite3-dev
+      - run: sudo apt-get install libsodium-dev
       - run:
           name: installing bundler
           command: bundle install
