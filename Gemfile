@@ -35,6 +35,10 @@ gem "discordrb-webhooks"
 # gem "sentry-raven", "~> 3.1"
 # json web token
 gem "jwt"
+# rubocop linter
+gem "rubocop", "~> 1.22", require: false
+gem "rubocop-rails", require: false
+gem "rubocop-rspec", require: false
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

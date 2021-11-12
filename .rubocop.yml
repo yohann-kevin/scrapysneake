@@ -6,14 +6,16 @@ Style/StringLiterals:
 Documentation:
   Enabled: false
 
+# temporary
 Metrics/LineLength:
-  Max: 150
+  Max: 400
 
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+# temporary
 Metrics/MethodLength:
-  Max: 20
+  Max: 35
 
 Metrics/AbcSize:
   Enabled: false
@@ -23,3 +25,10 @@ Rails/FilePath:
 
 Metrics/ClassLength:
   Max: 150
+
+AllCops:
+  Exclude:
+    - spec/**/*
+    - db/schema.rb
+    - db/migrate/*
+    - bin/*

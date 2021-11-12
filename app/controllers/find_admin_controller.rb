@@ -1,5 +1,6 @@
 class FindAdminController < ApplicationController
   def initialize
+    super()
     @connect = true
     @name = "kirua"
     @pass = "Kercode4"
