@@ -11,8 +11,9 @@ class AdministratorsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create administrator" do
-    assert_difference('Administrator.count') do
-      post administrators_url, params: { administrator: { encrypted_password: @administrator.encrypted_password, name: @administrator.name } }, as: :json
+    assert_difference("Administrator.count") do
+      post administrators_url, params: { administrator: { encrypted_password: @administrator.encrypted_password, name: @administrator.name } },
+                               as: :json
     end
 
     assert_response 201
@@ -24,12 +25,13 @@ class AdministratorsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update administrator" do
-    patch administrator_url(@administrator), params: { administrator: { encrypted_password: @administrator.encrypted_password, name: @administrator.name } }, as: :json
+    patch administrator_url(@administrator),
+          params: { administrator: { encrypted_password: @administrator.encrypted_password, name: @administrator.name } }, as: :json
     assert_response 200
   end
 
   test "should destroy administrator" do
-    assert_difference('Administrator.count', -1) do
+    assert_difference("Administrator.count", -1) do
       delete administrator_url(@administrator), as: :json
     end
 

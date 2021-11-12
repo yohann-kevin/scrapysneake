@@ -1,4 +1,25 @@
+require: rubocop-rails
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+
 Documentation:
   Enabled: false
+
+Metrics/LineLength:
+  Max: 150
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/AbcSize:
+  Enabled: false
+
+Rails/FilePath:
+  Enabled: false
+
+Metrics/ClassLength:
+  Max: 150

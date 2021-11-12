@@ -37,5 +37,5 @@ class TrendController < ApplicationController
 
   def send_data
     render json: @data
-  end  
+  end
 end

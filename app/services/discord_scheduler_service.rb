@@ -6,11 +6,11 @@ class DiscordSchedulerService
   def send_scheduler_message
     client = Discordrb::Webhooks::Client.new(url: ENV["DISCORD_WEBHOOKS"])
     client.execute do |builder|
-      builder.content = 'Scheduler run !'
+      builder.content = "Scheduler run !"
       builder.add_embed do |embed|
         embed.title = "Heroku scheduler"
         embed.description = @message
-        embed.timestamp = Time.now
+        embed.timestamp = Time.zone.now
       end
     end
   end

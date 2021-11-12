@@ -16,8 +16,8 @@ class ScraperFlightClubController < ApplicationController
     find_sneaker(page_html, "man")
   end
 
-  def self.find_sneaker(page, gender)
+  def self.find_sneaker(page, _gender)
     product = page.css(".iYMDAx")
-    puts product
+    Rails.logger.debug product
   end
 end

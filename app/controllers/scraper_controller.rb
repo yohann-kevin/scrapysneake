@@ -7,8 +7,8 @@ class ScraperController < ApplicationController
     # ScraperCourirController.scrap_courir
     webapps = analyze_params(params[:webapp])
     @gender = params[:gender]
-    puts @gender
-    puts " "
+    Rails.logger.debug @gender
+    Rails.logger.debug " "
     render json: @data = find_sneakers(webapps)
   end
 

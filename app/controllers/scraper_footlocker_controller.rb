@@ -25,20 +25,19 @@ class ScraperFootlockerController < ApplicationController
   def self.find_sneakers(page, gender)
     initial_url = "https://www.footlocker.fr"
     page_size = page.css(".product-container").length
-    0.upto(page_size - 1) {
-      |el|
-      puts el
+    0.upto(page_size - 1) do |el|
+      Rails.logger.debug el
       section = page.css(".product-container")[el]
       product_link = section.css(".ProductCard-link")[0]["href"]
       @sneaker_foot_locker << {
         "model" => section.css(".ProductName-primary").text,
-        "price" => section.css(".ProductPrice").text.tr('^0-9,', ''),
+        "price" => section.css(".ProductPrice").text.tr("^0-9,", ""),
         "link" => "#{initial_url}#{product_link}",
         "gender" => gender,
         "seller" => "Foot Locker",
         "image_path" => find_image("https://www.footlocker.fr/", product_link)
       }
-    }
+    end
     save_sneaker_foot_locker
     # return @sneaker_foot_locker
   end
@@ -49,15 +48,15 @@ class ScraperFootlockerController < ApplicationController
   def self.find_image(start_uri, link)
     product_page = URI.parse("#{start_uri}#{link}").open
     product_page = Nokogiri::HTML(product_page)
-    
+
     begin
       id = product_page.css(".Tab-panel")[0].text
-      id = id.slice(0..(id.index("Color"))).tr('^0-9', '')
+      id = id.slice(0..(id.index("Color"))).tr("^0-9", "")
       initial_url_img = "images.footlocker.com/is/image/FLEU/"
       final_url_img = "?wid=236&hei=236&fmt=png-alpha"
       uri = "#{initial_url_img}#{id}#{final_url_img}"
-    rescue => e
-      puts e
+    rescue StandardError => e
+      Rails.logger.debug e
       uri = "error"
     end
   end
@@ -65,8 +64,8 @@ class ScraperFootlockerController < ApplicationController
   def self.save_sneaker_foot_locker
     @sneaker_foot_locker.each do |el|
       sneaker = Sneaker.add_new_sneaker(el)
-      sneaker.save if sneaker != nil
+      sneaker&.save
     end
-    return @sneaker_foot_locker
+    @sneaker_foot_locker
   end
 end

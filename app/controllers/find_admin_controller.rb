@@ -6,7 +6,7 @@ class FindAdminController < ApplicationController
   end
 
   def check_admin
-    response = @name + "&" + @pass if @connect
+    response = "#{@name}&#{@pass}" if @connect
     find_admin(response)
   end
 

@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get "/sneakers/count/all" => "sneakers#sneaker_count"
 
   get "/sneakers/seller/:seller" => "sneakers#find_sneakers_by_seller"
-  
+
   get "/" => "index#home"
 
   get "/trend" => "trend#send_data"
