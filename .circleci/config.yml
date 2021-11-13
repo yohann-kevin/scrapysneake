@@ -22,6 +22,6 @@ jobs:
       - run:
         name: run rails test
         command: bundle exec rake test
-      - run:
-        name: run rubocop code linter
-        command: bundle exec rubocop
+      # - run:
+      #   name: run rubocop code linter
+      #   command: bundle exec rubocop
