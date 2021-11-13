@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Adverts", type: :request do
   describe "/advert" do
@@ -6,5 +6,4 @@ RSpec.describe "Adverts", type: :request do
     #   expect(assigns(:image_path)).not_to be_nil
     # end
   end
-  
 end

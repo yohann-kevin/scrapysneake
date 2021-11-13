@@ -31,7 +31,7 @@ class Sneaker < ApplicationRecord
   def self.find_sneaker_with_model(model)
     sneaker = Sneaker.where("model LIKE '%#{model}%'").order(price: :asc)
     wanted_update(sneaker)
-    return sneaker
+    sneaker
   end
 
   def self.find_most_wanted_sneakers
@@ -69,9 +69,9 @@ class Sneaker < ApplicationRecord
     sneakers = Sneaker.all
     all_seller = []
     sneakers.each do |el|
-      all_seller.push(el["seller"]) if !all_seller.include?(el["seller"])
+      all_seller.push(el["seller"]) unless all_seller.include?(el["seller"])
     end
-    return all_seller
+    all_seller
   end
 
   def self.find_most_seller(seller)
@@ -80,15 +80,15 @@ class Sneaker < ApplicationRecord
     sneakers.each do |el|
       counter += el[:wanted]
     end
-    return counter
+    counter
   end
 
   def self.increment_wanted(id)
     sneaker = Sneaker.find_by(id: id)
-    if sneaker != nil
-      sneaker[:wanted] += 1
-      sneaker.save
-    end
+    return unless sneaker.nil?
+
+    sneaker[:wanted] += 1
+    sneaker.save
   end
 
   def self.find_best_seller_price
@@ -115,20 +115,21 @@ class Sneaker < ApplicationRecord
     @seller_price_average["jd_sports"] = @seller_price_average["jd_sports"] / @jd_sport_count
     @seller_price_average["corner"] = @seller_price_average["corner"] / @corner_count
 
-    return @seller_price_average
+    @seller_price_average
   end
 
   def self.compute_all_seller_price(sneaker)
-    if sneaker.seller.downcase == "foot locker"
+    case sneaker.seller.downcase
+    when "foot locker"
       @foot_locker_count += 1
       @seller_price_average["foot_locker"] += sneaker.price
-    elsif sneaker.seller.downcase == "la boutique officielle"
+    when "la boutique officielle"
       @official_shop_count += 1
       @seller_price_average["official_shop"] += sneaker.price
-    elsif sneaker.seller.downcase == "jdsports"
+    when "jdsports"
       @jd_sport_count += 1
       @seller_price_average["jd_sports"] += sneaker.price
-    elsif sneaker.seller.downcase == "corner"
+    when "corner"
       @corner_count += 1
       @seller_price_average["corner"] += sneaker.price
     else

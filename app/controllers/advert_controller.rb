@@ -2,6 +2,7 @@ class AdvertController < ApplicationController
   skip_before_action :authorized
 
   def initialize
+    super()
     @img_link = ENV.fetch("IMG_API_LINK")
     @carousel_img = [
       "#{@img_link}carousel/adidas-share.jpg",

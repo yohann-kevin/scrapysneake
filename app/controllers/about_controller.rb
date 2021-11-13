@@ -1,7 +1,8 @@
 class AboutController < ApplicationController
   skip_before_action :authorized
-  
+
   def initialize
+    super()
     @img_link = ENV.fetch("IMG_API_LINK")
     @data = [
       {

@@ -1,6 +1,6 @@
 class SneakersController < ApplicationController
   skip_before_action :authorized
-  before_action :set_sneaker, only: [:show, :update, :destroy]
+  before_action :set_sneaker, only: %i[show update destroy]
 
   # GET /sneakers
   def index
@@ -33,8 +33,8 @@ class SneakersController < ApplicationController
 
   # POST /sneakers
   def create
-    puts "------------"
-    puts sneaker_params
+    Rails.logger.debug "------------"
+    Rails.logger.debug sneaker_params
     @sneaker = Sneaker.add_new_sneaker(sneaker_params)
 
     if @sneaker.save
@@ -47,14 +47,13 @@ class SneakersController < ApplicationController
   def sneaker_count
     counter = {}
 
-    0.upto(7) {
-      |el|
+    0.upto(7) do |el|
       counter["days#{el}"] = {
         "counter_sneaker" => Sneaker.count_sneaker(el),
         "counter_sneaker_man" => Sneaker.count_sneaker_gender(el, "man"),
         "counter_sneaker_women" => Sneaker.count_sneaker_gender(el, "women")
       }
-    }
+    end
 
     render json: counter
   end
@@ -62,12 +61,12 @@ class SneakersController < ApplicationController
   def count_most_seller
     seller = Sneaker.find_all_seller
 
-    puts seller[0]
+    Rails.logger.debug seller[0]
     most_seller = {
-      "#{seller[0]}" => Sneaker.find_most_seller(seller[0]),
-      "#{seller[1]}" => Sneaker.find_most_seller(seller[1]),
-      "#{seller[2]}" => Sneaker.find_most_seller(seller[2]),
-      "#{seller[3]}" => Sneaker.find_most_seller(seller[3])
+      (seller[0]).to_s => Sneaker.find_most_seller(seller[0]),
+      (seller[1]).to_s => Sneaker.find_most_seller(seller[1]),
+      (seller[2]).to_s => Sneaker.find_most_seller(seller[2]),
+      (seller[3]).to_s => Sneaker.find_most_seller(seller[3])
     }
 
     render json: most_seller
@@ -97,29 +96,30 @@ class SneakersController < ApplicationController
   end
 
   def delete_sneakers_by_seller
-    if Rails.env == "development"
+    if Rails.env.development?
       Sneaker.remove_sneakers_by_seller(params[:seller])
     else
-      puts "is in prod ! can't delete sneakers !"
+      Rails.logger.debug "is in prod ! can't delete sneakers !"
     end
   end
 
   def reset_all_sneakers_data
-    if Rails.env == "development"
+    if Rails.env.development?
       Sneaker.destroy_all
     else
-      puts "is in prod ! can't delete sneakers"
+      Rails.logger.debug "is in prod ! can't delete sneakers"
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_sneaker
-      @sneaker = Sneaker.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def sneaker_params
-      params.permit(:id, :model, :price, :link, :gender, :seller, :image_path)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_sneaker
+    @sneaker = Sneaker.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def sneaker_params
+    params.permit(:id, :model, :price, :link, :gender, :seller, :image_path)
+  end
 end

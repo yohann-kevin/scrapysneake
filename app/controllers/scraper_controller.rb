@@ -7,23 +7,24 @@ class ScraperController < ApplicationController
     # ScraperCourirController.scrap_courir
     webapps = analyze_params(params[:webapp])
     @gender = params[:gender]
-    puts @gender
-    puts " "
+    Rails.logger.debug @gender
+    Rails.logger.debug " "
     render json: @data = find_sneakers(webapps)
   end
 
   def find_sneakers(webapps)
+    sneaker = {
+      "foot_locker" => check_foot_locker(webapps),
+      "chausport" => check_chausport(webapps),
+      "official_shop" => check_official_shop(webapps),
+      "jd_sport" => check_jd(webapps),
+      "flight_club" => check_flight_club(webapps),
+      "corner" => check_corner(webapps),
+      "test" => test_site_scrap(webapps)
+    }
     {
       "response" => true,
-      "data" => sneaker = {
-        "foot_locker" => check_foot_locker(webapps),
-        "chausport" => check_chausport(webapps),
-        "official_shop" => check_official_shop(webapps),
-        "jd_sport" => check_jd(webapps),
-        "flight_club" => check_flight_club(webapps),
-        "corner" => check_corner(webapps),
-        "test" => test_site_scrap(webapps)
-      }
+      "data" => sneaker
     }
   end
 

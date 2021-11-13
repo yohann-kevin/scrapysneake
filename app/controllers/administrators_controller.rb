@@ -1,7 +1,7 @@
-require 'bcrypt'
+require "bcrypt"
 
 class AdministratorsController < ApplicationController
-  before_action :set_administrator, only: [:show, :update, :destroy]
+  before_action :set_administrator, only: %i[show update destroy]
   skip_before_action :authorized, only: [:login_admin]
 
   # GET /administrators
@@ -39,7 +39,7 @@ class AdministratorsController < ApplicationController
     password = BCrypt::Password.new(administrator[0].encrypted_password)
     if password == user_info["password"]
       payload = { user_id: administrator[0].id }
-      token = JWT.encode(payload, nil, 'none')
+      token = JWT.encode(payload, nil, "none")
       render json: {
         "token" => token,
         "response" => {
@@ -85,14 +85,15 @@ class AdministratorsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_administrator
-      @administrator = Administrator.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def administrator_params
-      # params.require(:administrator).permit(:name, :encrypted_password)
-      params.permit(:name, :encrypted_password)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_administrator
+    @administrator = Administrator.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def administrator_params
+    # params.require(:administrator).permit(:name, :encrypted_password)
+    params.permit(:name, :encrypted_password)
+  end
 end

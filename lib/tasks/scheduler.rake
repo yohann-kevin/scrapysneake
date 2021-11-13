@@ -1,15 +1,15 @@
 desc "Scrap sneaker in foot locker"
 task scrap_sneaker_foot_locker: :environment do
-  msg =  "scrap sneaker in foot locker"
+  msg = "scrap sneaker in foot locker"
   puts msg
   begin
     ScraperFootlockerController.scrap_foot_locker
     DiscordSchedulerService.new(msg).send_scheduler_message
-  rescue => err
-    error_save = FailedJob.new({ name: "scheduler", description: msg, error: err, stack_trace: err.backtrace.join("\n") })
+  rescue StandardError => e
+    error_save = FailedJob.new({ name: "scheduler", description: msg, error: e, stack_trace: e.backtrace.join("\n") })
     error_save.save
-    DiscordErrorService.new("scheduler", msg, err, err.backtrace.join("\n")).send_error
-    raise err
+    DiscordErrorService.new("scheduler", msg, e, e.backtrace.join("\n")).send_error
+    raise e
   end
 end
 
@@ -20,11 +20,11 @@ task scrap_man_sneaker_official_shop: :environment do
   begin
     ScraperOfficialshopController.scrap_officialshop("man")
     DiscordSchedulerService.new(msg).send_scheduler_message
-  rescue => err
-    error_save = FailedJob.new({ name: "scheduler", description: msg, error: err, stack_trace: err.backtrace.join("\n") })
+  rescue StandardError => e
+    error_save = FailedJob.new({ name: "scheduler", description: msg, error: e, stack_trace: e.backtrace.join("\n") })
     error_save.save
-    DiscordErrorService.new("scheduler", msg, err, err.backtrace.join("\n")).send_error
-    raise err
+    DiscordErrorService.new("scheduler", msg, e, e.backtrace.join("\n")).send_error
+    raise e
   end
 end
 
@@ -35,11 +35,11 @@ task scrap_women_sneaker_official_shop: :environment do
   begin
     ScraperOfficialshopController.scrap_officialshop("women")
     DiscordSchedulerService.new(msg).send_scheduler_message
-  rescue => err
-    error_save = FailedJob.new({ name: "scheduler", description: msg, error: err, stack_trace: err.backtrace.join("\n") })
+  rescue StandardError => e
+    error_save = FailedJob.new({ name: "scheduler", description: msg, error: e, stack_trace: e.backtrace.join("\n") })
     error_save.save
-    DiscordErrorService.new("scheduler", msg, err, err.backtrace.join("\n")).send_error
-    raise err
+    DiscordErrorService.new("scheduler", msg, e, e.backtrace.join("\n")).send_error
+    raise e
   end
 end
 
@@ -50,11 +50,11 @@ task scrap_man_sneaker_in_jd: :environment do
   begin
     ScraperJdController.scrap_jd("man")
     DiscordSchedulerService.new(msg).send_scheduler_message
-  rescue => err
-    error_save = FailedJob.new({ name: "scheduler", description: msg, error: err, stack_trace: err.backtrace.join("\n") })
+  rescue StandardError => e
+    error_save = FailedJob.new({ name: "scheduler", description: msg, error: e, stack_trace: e.backtrace.join("\n") })
     error_save.save
-    DiscordErrorService.new("scheduler", msg, err, err.backtrace.join("\n")).send_error
-    raise err
+    DiscordErrorService.new("scheduler", msg, e, e.backtrace.join("\n")).send_error
+    raise e
   end
 end
 
@@ -65,11 +65,11 @@ task scrap_women_sneaker_in_jd: :environment do
   begin
     ScraperJdController.scrap_jd("women")
     DiscordSchedulerService.new(msg).send_scheduler_message
-  rescue => err
-    error_save = FailedJob.new({ name: "scheduler", description: msg, error: err, stack_trace: err.backtrace.join("\n") })
+  rescue StandardError => e
+    error_save = FailedJob.new({ name: "scheduler", description: msg, error: e, stack_trace: e.backtrace.join("\n") })
     error_save.save
-    DiscordErrorService.new("scheduler", msg, err, err.backtrace.join("\n")).send_error
-    raise err
+    DiscordErrorService.new("scheduler", msg, e, e.backtrace.join("\n")).send_error
+    raise e
   end
 end
 
@@ -80,10 +80,10 @@ task scrap_man_corner: :environment do
   begin
     ScraperCornerController.scrap_corner
     DiscordSchedulerService.new(msg).send_scheduler_message
-  rescue => err
-    error_save = FailedJob.new({ name: "scheduler", description: msg, error: err, stack_trace: err.backtrace.join("\n") })
+  rescue StandardError => e
+    error_save = FailedJob.new({ name: "scheduler", description: msg, error: e, stack_trace: e.backtrace.join("\n") })
     error_save.save
-    DiscordErrorService.new("scheduler", msg, err, err.backtrace.join("\n")).send_error
-    raise err  
+    DiscordErrorService.new("scheduler", msg, e, e.backtrace.join("\n")).send_error
+    raise e
   end
 end
