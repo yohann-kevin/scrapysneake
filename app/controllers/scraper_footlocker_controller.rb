@@ -54,10 +54,10 @@ class ScraperFootlockerController < ApplicationController
       id = id.slice(0..(id.index("Color"))).tr("^0-9", "")
       initial_url_img = "images.footlocker.com/is/image/FLEU/"
       final_url_img = "?wid=236&hei=236&fmt=png-alpha"
-      uri = "#{initial_url_img}#{id}#{final_url_img}"
+      "#{initial_url_img}#{id}#{final_url_img}"
     rescue StandardError => e
       Rails.logger.debug e
-      uri = "error"
+      "error"
     end
   end
 

@@ -85,10 +85,10 @@ class Sneaker < ApplicationRecord
 
   def self.increment_wanted(id)
     sneaker = Sneaker.find_by(id: id)
-    unless sneaker.nil?
-      sneaker[:wanted] += 1
-      sneaker.save
-    end
+    return unless sneaker.nil?
+
+    sneaker[:wanted] += 1
+    sneaker.save
   end
 
   def self.find_best_seller_price
