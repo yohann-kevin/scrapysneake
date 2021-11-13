@@ -8,20 +8,20 @@ jobs:
       - image: cimg/ruby:3.0.1
     executor: ruby/default
     steps:
-      - checkout
-      - run: sudo apt update
-      - run: sudo apt-get update
-      - run: sudo apt-get install libsqlite3-dev
-      - run: sudo apt-get install libsodium-dev
-      - run:
-          name: installing bundler
-          command: bundle install
-      - run:
-          name: Run RSpec
-          command: bundle exec rspec spec
+      # - checkout
+      # - run: sudo apt update
+      # - run: sudo apt-get update
+      # - run: sudo apt-get install libsqlite3-dev
+      # - run: sudo apt-get install libsodium-dev
+      # - run:
+      #     name: installing bundler
+      #     command: bundle install
+      # - run:
+      #     name: Run RSpec
+      #     command: bundle exec rspec spec
       # - run:
       #   name: run rails test
       #   command: bundle exec rake test
-      - run:
-        name: run rubocop code linter
-        command: bundle exec rubocop
+      # - run:
+      #   name: run rubocop code linter
+      #   command: bundle exec rubocop
