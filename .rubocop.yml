@@ -26,6 +26,10 @@ Rails/FilePath:
 Metrics/ClassLength:
   Max: 150
 
+inherit_mode:
+  merge:
+    - Exclude
+
 AllCops:
   Exclude:
     - spec/**/*
