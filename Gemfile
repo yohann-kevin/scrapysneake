@@ -27,12 +27,6 @@ gem "pry"
 # dirscord bot
 gem "discordrb"
 gem "discordrb-webhooks"
-# monitoring with sentry
-# gem "sentry-ruby"
-# gem "sentry-rails", ">= 4.7.3"
-# gem 'sentry-sidekiq'
-# gem 'sentry-resque'
-# gem "sentry-raven", "~> 3.1"
 # json web token
 gem "jwt"
 # rubocop linter

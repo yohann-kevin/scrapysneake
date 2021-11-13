@@ -7,7 +7,7 @@ Documentation:
   Enabled: false
 
 # temporary
-Metrics/LineLength:
+Layout/LineLength:
   Max: 400
 
 Style/FrozenStringLiteralComment:
