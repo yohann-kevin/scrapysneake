@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   get "/sneakers/find/:model" => "sneakers#find_sneakers"
   get "/sneakers/count/all" => "sneakers#sneaker_count"
+  get "/sneakers/count/seller" => "sneakers#sneaker_count_seller"
 
   get "/sneakers/seller/:seller" => "sneakers#find_sneakers_by_seller"
 

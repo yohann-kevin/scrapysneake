@@ -61,6 +61,10 @@ class Sneaker < ApplicationRecord
     Sneaker.where("created_at < ?", day_ago.days.ago, gender: gender).count
   end
 
+  def self.count_sneaker_by_seller(seller)
+    Sneaker.where(seller: seller).count
+  end
+
   def self.remove_sneakers_by_seller(seller)
     Sneaker.where(seller: seller).destroy_all
   end

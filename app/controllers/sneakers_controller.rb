@@ -58,6 +58,16 @@ class SneakersController < ApplicationController
     render json: counter
   end
 
+  def sneaker_count_seller
+    sellers = Sneaker.find_all_seller
+    seller_count = []
+    sellers.each do |el|
+      seller_count << { el.to_s => Sneaker.count_sneaker_by_seller(el) }
+    end
+
+    render json: seller_count
+  end
+
   def count_most_seller
     seller = Sneaker.find_all_seller
 
