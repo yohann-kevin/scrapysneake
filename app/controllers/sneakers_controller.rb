@@ -69,15 +69,11 @@ class SneakersController < ApplicationController
   end
 
   def count_most_seller
-    seller = Sneaker.find_all_seller
-
-    Rails.logger.debug seller[0]
-    most_seller = {
-      (seller[0]).to_s => Sneaker.find_most_seller(seller[0]),
-      (seller[1]).to_s => Sneaker.find_most_seller(seller[1]),
-      (seller[2]).to_s => Sneaker.find_most_seller(seller[2]),
-      (seller[3]).to_s => Sneaker.find_most_seller(seller[3])
-    }
+    sellers = Sneaker.find_all_seller
+    most_seller = []
+    sellers.each do |el|
+      most_seller << { el.to_s => Sneaker.find_most_seller(el) }
+    end
 
     render json: most_seller
   end
