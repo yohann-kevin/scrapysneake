@@ -91,9 +91,9 @@ class SneakersController < ApplicationController
         appear: Sneaker.find_most_seller(el),
         counter: Sneaker.where(seller: el).count,
         price: Sneaker.avergare_price_by_seller(el)
-      ]}
+      ] }
     end
-    
+
     render json: best_seller
   end
 
