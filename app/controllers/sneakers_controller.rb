@@ -84,7 +84,7 @@ class SneakersController < ApplicationController
     sellers.each do |el|
       average_price << { el.to_s => Sneaker.average_price_by_seller(el) }
     end
-    
+
     render json: average_price
   end
 
