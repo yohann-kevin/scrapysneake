@@ -122,7 +122,7 @@ class Sneaker < ApplicationRecord
     @seller_price_average
   end
 
-  def self.avergare_price_by_seller(seller)
+  def self.average_price_by_seller(seller)
     seller_count = Sneaker.where(seller: seller).count
     all_price = Sneaker.where(seller: seller).pluck(:price)
     total = 0

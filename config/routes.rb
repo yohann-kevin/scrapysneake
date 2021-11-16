@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # seller appearing the most in search
   get "/sneakers/find/most_seller" => "sneakers#count_most_seller"
   # best price seller
-  get "/sneakers/search/best_seller_price" => "sneakers#best_seller_price"
+  get "/sneakers/find/best_seller_price" => "sneakers#best_seller_price"
   # best seller
   get "/sneakers/best/seller" => "sneakers#best_seller"
 

@@ -79,8 +79,13 @@ class SneakersController < ApplicationController
   end
 
   def best_seller_price
-    sneaker = Sneaker.find_best_seller_price
-    render json: { "sneaker": sneaker }
+    sellers = Sneaker.find_all_seller
+    average_price = []
+    sellers.each do |el|
+      average_price << { el.to_s => Sneaker.average_price_by_seller(el) }
+    end
+    
+    render json: average_price
   end
 
   def best_seller
@@ -90,7 +95,7 @@ class SneakersController < ApplicationController
       best_seller << { el.to_s => [
         appear: Sneaker.find_most_seller(el),
         counter: Sneaker.where(seller: el).count,
-        price: Sneaker.avergare_price_by_seller(el)
+        price: Sneaker.average_price_by_seller(el)
       ] }
     end
 
