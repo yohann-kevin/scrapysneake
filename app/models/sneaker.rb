@@ -122,6 +122,16 @@ class Sneaker < ApplicationRecord
     @seller_price_average
   end
 
+  def self.avergare_price_by_seller(seller)
+    seller_count = Sneaker.where(seller: seller).count
+    all_price = Sneaker.where(seller: seller).pluck(:price)
+    total = 0
+    all_price.each do |el|
+      total += el
+    end
+    total / seller_count
+  end
+
   def self.compute_all_seller_price(sneaker)
     case sneaker.seller.downcase
     when "foot locker"

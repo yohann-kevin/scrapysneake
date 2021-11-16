@@ -83,6 +83,20 @@ class SneakersController < ApplicationController
     render json: { "sneaker": sneaker }
   end
 
+  def best_seller
+    sellers = Sneaker.find_all_seller
+    best_seller = []
+    sellers.each do |el|
+      best_seller << { el.to_s => [
+        appear: Sneaker.find_most_seller(el),
+        counter: Sneaker.where(seller: el).count,
+        price: Sneaker.avergare_price_by_seller(el)
+      ]}
+    end
+    
+    render json: best_seller
+  end
+
   # PATCH/PUT /sneakers/1
   def update
     if @sneaker.update(sneaker_params)
