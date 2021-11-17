@@ -102,6 +102,12 @@ class SneakersController < ApplicationController
     render json: best_seller
   end
 
+  def find_sneakers_most_model
+    sneaker = Sneaker.find_most_wanted_sneakers_model
+
+    render json: sneaker
+  end
+
   # PATCH/PUT /sneakers/1
   def update
     if @sneaker.update(sneaker_params)

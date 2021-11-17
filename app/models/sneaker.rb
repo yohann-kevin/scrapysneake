@@ -38,6 +38,16 @@ class Sneaker < ApplicationRecord
     Sneaker.order(wanted: :desc).limit(8)
   end
 
+  def self.find_most_wanted_sneakers_model
+    sneakers_wanted = Sneaker.where.not(wanted: 0)
+    all_models = []
+    sneakers_wanted.each do |sneaker|
+      model = sneaker.model.split(" ")[0].downcase
+      all_models.push(model)
+    end
+    all_models.tally
+  end
+
   def self.find_sneaker_with_seller(seller)
     Sneaker.where(seller: seller)
   end
@@ -93,33 +103,6 @@ class Sneaker < ApplicationRecord
 
     sneaker[:wanted] += 1
     sneaker.save
-  end
-
-  def self.find_best_seller_price
-    @seller_price_average = {
-      "foot_locker" => 0,
-      "official_shop" => 0,
-      "jd_sports" => 0,
-      "corner" => 0,
-      "error" => 0
-    }
-
-    @foot_locker_count = 0
-    @official_shop_count = 0
-    @jd_sport_count = 0
-    @corner_count = 0
-
-    all_sneakers = Sneaker.all
-    all_sneakers.each do |el|
-      compute_all_seller_price(el)
-    end
-
-    @seller_price_average["foot_locker"] = @seller_price_average["foot_locker"] / @foot_locker_count
-    @seller_price_average["official_shop"] = @seller_price_average["official_shop"] / @official_shop_count
-    @seller_price_average["jd_sports"] = @seller_price_average["jd_sports"] / @jd_sport_count
-    @seller_price_average["corner"] = @seller_price_average["corner"] / @corner_count
-
-    @seller_price_average
   end
 
   def self.average_price_by_seller(seller)

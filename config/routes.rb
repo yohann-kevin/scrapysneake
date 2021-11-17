@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get "/sneakers/find/best_seller_price" => "sneakers#best_seller_price"
   # best seller
   get "/sneakers/best/seller" => "sneakers#best_seller"
+  # find best sneaker model
+  get "/sneakers/best/model" => "sneakers#find_sneakers_most_model"
 
   post "/sneakers/delete/:seller" => "sneakers#delete_sneakers_by_seller"
   post "/sneakers/delete/all" => "sneakers#reset_all_sneakers_data"
