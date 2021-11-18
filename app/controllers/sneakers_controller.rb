@@ -108,6 +108,12 @@ class SneakersController < ApplicationController
     render json: sneaker
   end
 
+  def most_price_range
+    price_range = Sneaker.find_most_price_range
+
+    render json: price_range
+  end
+
   # PATCH/PUT /sneakers/1
   def update
     if @sneaker.update(sneaker_params)

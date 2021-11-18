@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get "/sneakers/best/seller" => "sneakers#best_seller"
   # find best sneaker model
   get "/sneakers/best/model" => "sneakers#find_sneakers_most_model"
+  # get sneaker best price range
+  get "/sneakers/price/range" => "sneakers#most_price_range"
 
   post "/sneakers/delete/:seller" => "sneakers#delete_sneakers_by_seller"
   post "/sneakers/delete/all" => "sneakers#reset_all_sneakers_data"
@@ -34,9 +36,9 @@ Rails.application.routes.draw do
 
   post "/login" => "administrators#login_admin"
 
-  get "partner/get" => "partner#send_partner"
+  get "/partner/get" => "partner#send_partner"
 
-  get "about/get" => "about#send_about"
+  get "/about/get" => "about#send_about"
 
   get "scrap/:webapp" => "scraper#scrap"
   get "scrap/:webapp/:gender" => "scraper#scrap"
