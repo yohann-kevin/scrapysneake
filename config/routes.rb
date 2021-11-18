@@ -40,6 +40,8 @@ Rails.application.routes.draw do
 
   get "/about/get" => "about#send_about"
 
-  get "scrap/:webapp" => "scraper#scrap"
-  get "scrap/:webapp/:gender" => "scraper#scrap"
+  get "/scrap/:webapp" => "scraper#scrap"
+  get "/scrap/:webapp/:gender" => "scraper#scrap"
+
+  get "/jobs/last/week" => "jobs#last_week_failed_job"
 end
