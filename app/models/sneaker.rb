@@ -45,7 +45,8 @@ class Sneaker < ApplicationRecord
       model = sneaker.model.split(" ")[0].downcase
       all_models.push(model)
     end
-    all_models.tally
+    all_models = all_models.tally
+    Hash[all_models.sort_by {|model, freq| [-freq, model] }]
   end
 
   def self.find_sneaker_with_seller(seller)
