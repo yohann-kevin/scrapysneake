@@ -119,6 +119,12 @@ class Sneaker < ApplicationRecord
     total / seller_count
   end
 
+  def self.total_price_average
+    sum = Sneaker.pluck("price").sum
+    length = Sneaker.count
+    sum / length
+  end
+
   def self.compute_all_seller_price(sneaker)
     case sneaker.seller.downcase
     when "foot locker"
