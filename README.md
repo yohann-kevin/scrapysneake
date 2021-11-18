@@ -25,7 +25,7 @@ This platform is a price comparison for sneakers. Eventually, the platform will 
 ## Technology
 
 - ruby and ruby on  rails
-- sqlite3 on developpment and mysql2 for produciton
+- sqlite3 on developpment and mysql2 for production
 - Rspec for test application
 - deploy with heroku [view deployment](https://scrapysneake.herokuapp.com/)
 - CircleCI for continuous integration 
