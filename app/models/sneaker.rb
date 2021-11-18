@@ -47,7 +47,7 @@ class Sneaker < ApplicationRecord
     end
     all_models = all_models.tally
     all_models.each do |k, v|
-      all_models.delete(k) if !v.nil? && v < 20
+      all_models.delete(k) if !v.nil? && v < 10
     end
     Hash[all_models.sort_by { |model, freq| [-freq, model] }]
   end
