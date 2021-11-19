@@ -148,7 +148,7 @@ class Sneaker < ApplicationRecord
     max = Sneaker.maximum("price")
     index = 0
     price_sorted = []
-    price_sorted << { index.to_s => Sneaker.where(price: index..(index += 10)).pluck("price").sort } while index <= max
+    price_sorted << { index.to_s => Sneaker.where(price: index..(index += 10)).pluck("price").count } while index <= max
     price_sorted
   end
 end
