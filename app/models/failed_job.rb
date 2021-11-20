@@ -11,6 +11,6 @@ class FailedJob < ApplicationRecord
       sorted_failed_job << { index.day.ago.utc.to_s => FailedJob.where(created_at: (index + 1).day.ago.utc..index.day.ago.utc).count }
       index += 1
     end
-    sorted_failed_job
+    sorted_failed_job.reverse
   end
 end
